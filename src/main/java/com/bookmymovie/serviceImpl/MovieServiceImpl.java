@@ -14,16 +14,14 @@ import java.util.Optional;
 @Service
 public class MovieServiceImpl implements MovieService {
 
-    private MovieRepository movieRepository;
-
     @Autowired
-    private MovieServiceImpl(MovieRepository movieRepository){
-        this.movieRepository=movieRepository;
-    }
+    private MovieRepository movieRepository;
+    @Autowired
+    private MovieMapper movieMapper;
 
     @Override
     public List<MovieDTO> findAll() {
-        List<MovieDTO> movies = MovieMapper.INSTANCE.toMovieDTOs(movieRepository.findAll());
+        List<MovieDTO> movies = movieMapper.toMovieDTOs(movieRepository.findAll());
         return movies;
     }
 

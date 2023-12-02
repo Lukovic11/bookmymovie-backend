@@ -25,5 +25,4 @@ public class MovieHall {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "movieHall")
     private List<Seat> seats;
 
-
 }

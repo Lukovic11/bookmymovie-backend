@@ -10,7 +10,6 @@ import java.util.List;
 @Mapper(componentModel="spring")
 public interface ScreeningMapper {
 
-    ScreeningMapper INSTANCE = Mappers.getMapper(ScreeningMapper.class);
 
     ScreeningDTO screeningToScreeningDTO(Screening screening);
 //    Screening screeningDTOToScreening(ScreeningDTO screeningDTO);

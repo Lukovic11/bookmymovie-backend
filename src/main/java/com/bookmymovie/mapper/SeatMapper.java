@@ -10,7 +10,6 @@ import java.util.List;
 @Mapper(componentModel="spring")
 public interface SeatMapper {
 
-    SeatMapper INSTANCE = Mappers.getMapper(SeatMapper.class);
 
     SeatDTO seatToSeatDTO(Seat seat);
 //    Seat seatDTOToSeat(SeatDTO seatDTO);

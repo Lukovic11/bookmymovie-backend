@@ -10,7 +10,6 @@ import java.util.List;
 @Mapper(componentModel="spring")
 public interface MovieHallMapper {
 
-    MovieHallMapper INSTANCE = Mappers.getMapper(MovieHallMapper.class);
 
     MovieHallDTO movieHallToMovieHallDTO(MovieHall movieHall);
 //    MovieHall movieHallDTOToMovieHall(MovieHallDTO movieHallDTO);

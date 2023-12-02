@@ -10,7 +10,6 @@ import java.util.List;
 @Mapper(componentModel="spring")
 public interface BookingMapper {
 
-    BookingMapper INSTANCE = Mappers.getMapper(BookingMapper.class);
 
     BookingDTO bookingToBookingDTO(Booking booking);
 //    Booking bookingDTOToBooking(BookingDTO bookingDTO);
