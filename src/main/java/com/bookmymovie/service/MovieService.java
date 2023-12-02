@@ -10,11 +10,11 @@ public interface MovieService {
 
     List<MovieDTO> findAll();
 
-    Optional<Movie> findById(Long id);
+    MovieDTO findById(Long id);
 
-    List<Movie> findByGenre(String genre);
+    List<MovieDTO> findByGenre(String genre);
 
-    List<Movie> findByTitle(String title);
+    List<MovieDTO> findByTitle(String title);
 
     void save(Movie movie);
 

@@ -1,5 +1,6 @@
 package com.bookmymovie.dao;
 
+import com.bookmymovie.dto.MovieDTO;
 import com.bookmymovie.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -8,7 +8,9 @@ import com.bookmymovie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -26,18 +28,25 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Optional<Movie> findById(Long id) {
-        return movieRepository.findById(id);
+    public MovieDTO findById(Long id) {
+        Movie movie = movieRepository.findById(id).orElse(null);
+        if(movie!=null){
+            return movieMapper.movieToMovieDTO(movieRepository.findById(id).orElseThrow(() -> new NoSuchElementException()));
+
+        }
+        return null;
     }
 
     @Override
-    public List<Movie> findByGenre(String genre) {
-        return movieRepository.findByGenre(genre);
+    public List<MovieDTO> findByGenre(String genre) {
+        List<MovieDTO> movies = movieMapper.toMovieDTOs(movieRepository.findByGenre(genre));
+        return movies;
     }
 
     @Override
-    public List<Movie> findByTitle(String title) {
-        return movieRepository.findByTitle(title);
+    public List<MovieDTO> findByTitle(String title) {
+        List<MovieDTO> movies= movieMapper.toMovieDTOs(movieRepository.findByTitle(title));
+        return movies;
     }
 
 

@@ -10,18 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/movies")
 public class MovieController {
 
-    private MovieMapper movieMapper;
-    private MovieService movieService;
-
     @Autowired
-    public MovieController(MovieService movieService){
-        this.movieService=movieService;
-    }
+    private MovieService movieService;
 
     @GetMapping()
     @Transactional
@@ -29,15 +25,20 @@ public class MovieController {
         return movieService.findAll();
     }
 
+    @GetMapping("/byId/{id}")
+    public MovieDTO findById(@PathVariable Long id) {
+        return movieService.findById(id);
+    }
+
     @GetMapping("/byGenre/{genre}")
     @Transactional
-    public List<Movie> findByGenre(@PathVariable String genre) {
+    public List<MovieDTO> findByGenre(@PathVariable String genre) {
         return movieService.findByGenre(genre);
     }
 
     @GetMapping("/byTitle/{title}")
     @Transactional
-    public List<Movie> findByTitle(@PathVariable String title) {
+    public List<MovieDTO> findByTitle(@PathVariable String title) {
         return movieService.findByTitle(title);
     }
 
