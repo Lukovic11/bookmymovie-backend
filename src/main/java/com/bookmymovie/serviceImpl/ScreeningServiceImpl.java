@@ -1,7 +1,9 @@
 package com.bookmymovie.serviceImpl;
 
 import com.bookmymovie.dao.ScreeningRepository;
+import com.bookmymovie.dto.ScreeningDTO;
 import com.bookmymovie.entity.Screening;
+import com.bookmymovie.mapper.ScreeningMapper;
 import com.bookmymovie.service.ScreeningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,26 +14,28 @@ import java.util.List;
 @Service
 public class ScreeningServiceImpl implements ScreeningService {
 
-    private ScreeningRepository screeningRepository;
-
     @Autowired
-    public ScreeningServiceImpl(ScreeningRepository screeningRepository) {
-        this.screeningRepository = screeningRepository;
+    private ScreeningRepository screeningRepository;
+    @Autowired
+    private ScreeningMapper screeningMapper;
+
+
+    @Override
+    public List<ScreeningDTO> findAll() {
+        List<ScreeningDTO> screenings=screeningMapper.toScreeningDTOs(screeningRepository.findAll());
+        return screenings;
     }
 
     @Override
-    public List<Screening> findAll() {
-        return screeningRepository.findAll();
+    public List<ScreeningDTO> findByDate(LocalDate date) {
+        List<ScreeningDTO> screenings=screeningMapper.toScreeningDTOs(screeningRepository.findByDate(date));
+        return screenings;
     }
 
     @Override
-    public List<Screening> findByDate(LocalDate date) {
-        return screeningRepository.findByDate(date);
-    }
-
-    @Override
-    public List<Screening> findByMovieId(Long movieId) {
-        return screeningRepository.findByMovie_Id(movieId);
+    public List<ScreeningDTO> findByMovieId(Long movieId) {
+        List<ScreeningDTO> screenings=screeningMapper.toScreeningDTOs(screeningRepository.findByMovie_Id(movieId));
+        return screenings;
     }
 
     @Override

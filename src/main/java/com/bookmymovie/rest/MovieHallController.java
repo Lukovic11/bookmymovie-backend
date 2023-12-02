@@ -1,5 +1,6 @@
 package com.bookmymovie.rest;
 
+import com.bookmymovie.dto.MovieHallDTO;
 import com.bookmymovie.entity.MovieHall;
 import com.bookmymovie.service.MovieHallService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class MovieHallController {
 
     @GetMapping()
     @Transactional
-    public List<MovieHall> findAll(){
+    public List<MovieHallDTO> findAll(){
         return movieHallService.findAll();
     }
 

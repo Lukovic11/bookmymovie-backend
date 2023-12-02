@@ -1,14 +1,15 @@
 package com.bookmymovie.service;
 
+import com.bookmymovie.dto.BookingDTO;
 import com.bookmymovie.entity.Booking;
 
 import java.util.List;
 
 public interface BookingService {
 
-    List<Booking> findAll();
+    List<BookingDTO> findAll();
 
-    List<Booking> findByUserId(Long userId);
+    List<BookingDTO> findByUserId(Long userId);
 
     void save(Booking booking);
 

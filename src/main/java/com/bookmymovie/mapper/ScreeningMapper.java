@@ -12,7 +12,6 @@ public interface ScreeningMapper {
 
 
     ScreeningDTO screeningToScreeningDTO(Screening screening);
-//    Screening screeningDTOToScreening(ScreeningDTO screeningDTO);
     List<ScreeningDTO> toScreeningDTOs(List<Screening> screenings);
 
 }

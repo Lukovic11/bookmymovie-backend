@@ -2,6 +2,7 @@ package com.bookmymovie.rest;
 
 import com.bookmymovie.dao.MovieHallRepository;
 import com.bookmymovie.dao.MovieRepository;
+import com.bookmymovie.dto.ScreeningDTO;
 import com.bookmymovie.entity.Movie;
 import com.bookmymovie.entity.MovieHall;
 import com.bookmymovie.entity.Screening;
@@ -32,19 +33,19 @@ public class ScreeningController {
 
     @GetMapping()
     @Transactional
-    public List<Screening> findAll(){
+    public List<ScreeningDTO> findAll(){
         return screeningService.findAll();
     }
 
     @GetMapping("/byDate/{date}")
     @Transactional
-    public List<Screening> findByDate(@PathVariable LocalDate date) {
+    public List<ScreeningDTO> findByDate(@PathVariable LocalDate date) {
         return screeningService.findByDate(date);
     }
 
     @GetMapping("/byMovieId/{movieId}")
     @Transactional
-    public List<Screening> findByMovieId(@PathVariable Long movieId) {
+    public List<ScreeningDTO> findByMovieId(@PathVariable Long movieId) {
         return screeningService.findByMovieId(movieId);
     }
 

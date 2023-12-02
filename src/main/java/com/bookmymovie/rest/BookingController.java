@@ -1,5 +1,6 @@
 package com.bookmymovie.rest;
 
+import com.bookmymovie.dto.BookingDTO;
 import com.bookmymovie.entity.Booking;
 import com.bookmymovie.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +13,18 @@ import java.util.List;
 @RequestMapping("/api/bookings")
 public class BookingController {
 
-    private BookingService bookingService;
-
     @Autowired
-    public BookingController(BookingService bookingService) {
-        this.bookingService = bookingService;
-    }
+    private BookingService bookingService;
 
     @GetMapping()
     @Transactional
-    public List<Booking> findAll(){
+    public List<BookingDTO> findAll(){
         return bookingService.findAll();
     }
 
     @GetMapping("/byUserId/{userId}")
     @Transactional
-    public List<Booking> findByUserId(@PathVariable Long userId) {
+    public List<BookingDTO> findByUserId(@PathVariable Long userId) {
         return bookingService.findByUserId(userId);
     }
 

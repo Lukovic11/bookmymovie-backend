@@ -1,5 +1,6 @@
 package com.bookmymovie.service;
 
+import com.bookmymovie.dto.ScreeningDTO;
 import com.bookmymovie.entity.Screening;
 
 import java.time.LocalDate;
@@ -7,11 +8,11 @@ import java.util.List;
 
 public interface ScreeningService {
 
-    List<Screening> findAll();
+    List<ScreeningDTO> findAll();
 
-    List<Screening> findByDate(LocalDate date);
+    List<ScreeningDTO> findByDate(LocalDate date);
 
-    List<Screening> findByMovieId(Long movieId);
+    List<ScreeningDTO> findByMovieId(Long movieId);
 
     void save(Screening screening);
 
