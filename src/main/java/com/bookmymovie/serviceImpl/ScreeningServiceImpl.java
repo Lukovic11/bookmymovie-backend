@@ -5,10 +5,12 @@ import com.bookmymovie.dto.ScreeningDTO;
 import com.bookmymovie.entity.Screening;
 import com.bookmymovie.mapper.ScreeningMapper;
 import com.bookmymovie.service.ScreeningService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service

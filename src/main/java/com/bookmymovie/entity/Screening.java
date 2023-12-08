@@ -1,5 +1,6 @@
 package com.bookmymovie.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,10 +32,12 @@ public class Screening {
     @Column(name = "time")
     private LocalTime time;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "moviefk"),insertable = false,updatable = false)
     private Movie movie;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="id", foreignKey = @ForeignKey(name = "moviehallfk"),insertable = false,updatable = false)
     private MovieHall movieHall;

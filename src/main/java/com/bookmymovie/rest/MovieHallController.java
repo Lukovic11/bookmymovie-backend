@@ -13,12 +13,8 @@ import java.util.List;
 @RequestMapping("/api/movieHalls")
 public class MovieHallController {
 
-    MovieHallService movieHallService;
-
     @Autowired
-    public MovieHallController(MovieHallService movieHallService) {
-        this.movieHallService = movieHallService;
-    }
+    MovieHallService movieHallService;
 
     @GetMapping()
     @Transactional

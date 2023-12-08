@@ -26,11 +26,6 @@ public class ScreeningController {
     @Autowired
     private MovieHallRepository movieHallRepository;
 
-    @Autowired
-    public ScreeningController(ScreeningService screeningService) {
-        this.screeningService = screeningService;
-    }
-
     @GetMapping()
     @Transactional
     public List<ScreeningDTO> findAll(){
