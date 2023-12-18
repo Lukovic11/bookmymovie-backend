@@ -1,4 +1,4 @@
-package com.bookmymovie.dao;
+package com.bookmymovie.repository;
 
 import com.bookmymovie.entity.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;

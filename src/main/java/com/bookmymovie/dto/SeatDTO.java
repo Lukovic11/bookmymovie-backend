@@ -19,6 +19,6 @@ public class SeatDTO {
     private Long seatNumber;
     private Long seatRow;
     private Boolean reserved;
-    private Screening screening;
-    private MovieHall movieHall;
+    private ScreeningDTO screening;
+    private MovieHallDTO movieHall;
 }

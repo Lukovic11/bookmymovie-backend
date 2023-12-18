@@ -26,11 +26,11 @@ public class Seat {
     private Boolean reserved;
 
     @ManyToOne
-    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "screeningfk"),nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "idscreening", foreignKey = @ForeignKey(name = "screeningfk"),nullable = false,insertable = false,updatable = false)
     private Screening screening;
 
     @ManyToOne
-    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "moviehallfk2"),nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "idmoviehall", foreignKey = @ForeignKey(name = "moviehallfk2"),nullable = false,insertable = false,updatable = false)
     private MovieHall movieHall;
 
 

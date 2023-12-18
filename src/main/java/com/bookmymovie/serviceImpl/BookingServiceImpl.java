@@ -1,6 +1,6 @@
 package com.bookmymovie.serviceImpl;
 
-import com.bookmymovie.dao.BookingRepository;
+import com.bookmymovie.repository.BookingRepository;
 import com.bookmymovie.dto.BookingDTO;
 import com.bookmymovie.entity.Booking;
 import com.bookmymovie.mapper.BookingMapper;

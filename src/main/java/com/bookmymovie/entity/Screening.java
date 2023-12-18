@@ -34,12 +34,12 @@ public class Screening {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "moviefk"),insertable = false,updatable = false)
+    @JoinColumn(name = "idmovie", foreignKey = @ForeignKey(name = "moviefk"),insertable = false,updatable = false)
     private Movie movie;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="id", foreignKey = @ForeignKey(name = "moviehallfk"),insertable = false,updatable = false)
+    @JoinColumn(name="idmoviehall", foreignKey = @ForeignKey(name = "moviehallfk"),insertable = false,updatable = false)
     private MovieHall movieHall;
 
 

@@ -23,6 +23,6 @@ public class ScreeningDTO {
     private String type;
     private LocalDate date;
     private LocalTime time;
-    private Movie movie;
-    private MovieHall movieHall;
+    private MovieDTO movie;
+    private MovieHallDTO movieHall;
 }

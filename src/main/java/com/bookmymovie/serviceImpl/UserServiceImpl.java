@@ -1,6 +1,6 @@
 package com.bookmymovie.serviceImpl;
 
-import com.bookmymovie.dao.UserRepository;
+import com.bookmymovie.repository.UserRepository;
 import com.bookmymovie.dto.UserDTO;
 import com.bookmymovie.entity.User;
 import com.bookmymovie.mapper.UserMapper;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {

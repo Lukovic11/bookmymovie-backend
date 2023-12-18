@@ -3,6 +3,7 @@ package com.bookmymovie.rest;
 import com.bookmymovie.dto.MovieDTO;
 import com.bookmymovie.entity.Movie;
 import com.bookmymovie.mapper.MovieMapper;
+import com.bookmymovie.repository.MovieRepository;
 import com.bookmymovie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,8 @@ public class MovieController {
 
     @Autowired
     private MovieService movieService;
+    @Autowired
+    private MovieMapper movieMapper;
 
     @GetMapping()
     @Transactional
@@ -38,11 +41,11 @@ public class MovieController {
 
     @GetMapping("/byTitle/{title}")
     @Transactional
-    public List<MovieDTO> findByTitle(@PathVariable String title) {
+    public MovieDTO findByTitle(@PathVariable String title) {
         return movieService.findByTitle(title);
     }
 
-
+    @Transactional
     public void save(@RequestBody Movie movie) {
         movieService.save(movie);
     }
@@ -60,28 +63,42 @@ public class MovieController {
                                                    @RequestParam("poster") MultipartFile file,
                                                    @RequestParam("trailer") String trailer) {
         try {
-            // Validate file content and other parameters if needed
-            // ...
 
-            // Convert the file content to a byte array
-            byte[] poster = file.getBytes();
-            Movie movie=new Movie();
-            movie.setTitle(title);
-            movie.setDescription(description);
-            movie.setYearOfRelease(yearOfRelease);
-            movie.setDuration(duration);
-            movie.setLanguage(language);
-            movie.setCountryOfOrigin(countryOfOrigin);
-            movie.setDirector(director);
-            movie.setGenre(genre);
-            movie.setPoster(poster);
-            movie.setTrailer(trailer);
+            MovieDTO existingMovie=movieService.findByTitle(title);
 
-            save(movie);
+            if(existingMovie!=null){
+                if (!file.isEmpty()) {
+                    byte[] poster = file.getBytes();
+                    existingMovie.setPoster(poster);
+                }
+                existingMovie.setDescription(description);
+                existingMovie.setYearOfRelease(yearOfRelease);
+                existingMovie.setDuration(duration);
+                existingMovie.setLanguage(language);
+                existingMovie.setCountryOfOrigin(countryOfOrigin);
+                existingMovie.setDirector(director);
+                existingMovie.setGenre(genre);
+                existingMovie.setTrailer(trailer);
 
-            // Save the data to the database (replace this with your database logic)
-            // ...
+                save(movieMapper.movieDTOToMovie(existingMovie));
+            }else{
+                Movie movie=new Movie();
+                if (!file.isEmpty()) {
+                    byte[] poster = file.getBytes();
+                    movie.setPoster(poster);
+                }
+                movie.setTitle(title);
+                movie.setDescription(description);
+                movie.setYearOfRelease(yearOfRelease);
+                movie.setDuration(duration);
+                movie.setLanguage(language);
+                movie.setCountryOfOrigin(countryOfOrigin);
+                movie.setDirector(director);
+                movie.setGenre(genre);
+                movie.setTrailer(trailer);
 
+                save(movie);
+            }
         } catch (Exception e) {
         }
     }

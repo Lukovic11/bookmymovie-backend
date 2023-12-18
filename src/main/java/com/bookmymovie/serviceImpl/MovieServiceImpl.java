@@ -1,6 +1,6 @@
 package com.bookmymovie.serviceImpl;
 
-import com.bookmymovie.dao.MovieRepository;
+import com.bookmymovie.repository.MovieRepository;
 import com.bookmymovie.dto.MovieDTO;
 import com.bookmymovie.entity.Movie;
 import com.bookmymovie.mapper.MovieMapper;
@@ -8,10 +8,8 @@ import com.bookmymovie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -44,9 +42,9 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<MovieDTO> findByTitle(String title) {
-        List<MovieDTO> movies= movieMapper.toMovieDTOs(movieRepository.findByTitle(title));
-        return movies;
+    public MovieDTO findByTitle(String title) {
+        MovieDTO movie= movieMapper.movieToMovieDTO(movieRepository.findByTitle(title));
+        return movie;
     }
 
 

@@ -18,7 +18,7 @@ public class BookingDTO {
     private Long id;
     private Long numOfSeats;
     private Date createdOn;
-    private Screening screening;
-    private User user;
-    private Movie movie;
+    private ScreeningDTO screening;
+    private UserDTO user;
+    private MovieDTO movie;
 }

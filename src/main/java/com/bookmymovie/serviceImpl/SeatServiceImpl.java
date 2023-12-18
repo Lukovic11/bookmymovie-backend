@@ -1,8 +1,7 @@
 package com.bookmymovie.serviceImpl;
 
-import com.bookmymovie.dao.SeatRepository;
+import com.bookmymovie.repository.SeatRepository;
 import com.bookmymovie.dto.SeatDTO;
-import com.bookmymovie.entity.Seat;
 import com.bookmymovie.mapper.SeatMapper;
 import com.bookmymovie.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;

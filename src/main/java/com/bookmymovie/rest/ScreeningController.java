@@ -1,7 +1,7 @@
 package com.bookmymovie.rest;
 
-import com.bookmymovie.dao.MovieHallRepository;
-import com.bookmymovie.dao.MovieRepository;
+import com.bookmymovie.repository.MovieHallRepository;
+import com.bookmymovie.repository.MovieRepository;
 import com.bookmymovie.dto.ScreeningDTO;
 import com.bookmymovie.entity.Movie;
 import com.bookmymovie.entity.MovieHall;

@@ -14,7 +14,7 @@ public interface MovieService {
 
     List<MovieDTO> findByGenre(String genre);
 
-    List<MovieDTO> findByTitle(String title);
+    MovieDTO findByTitle(String title);
 
     void save(Movie movie);
 

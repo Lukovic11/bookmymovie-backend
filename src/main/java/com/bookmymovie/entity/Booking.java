@@ -24,16 +24,16 @@ public class Booking {
     private Date createdOn;
 
     @ManyToOne
-    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "screeningfk2"),nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "idscreening", foreignKey = @ForeignKey(name = "screeningfk2"),nullable = false,insertable = false,updatable = false)
     private Screening screening;
 
 
     @ManyToOne
-    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "userfk"),insertable = false,updatable = false)
+    @JoinColumn(name = "iduser", foreignKey = @ForeignKey(name = "userfk"),insertable = false,updatable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "moviefk2"),nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "idmovie", foreignKey = @ForeignKey(name = "moviefk2"),nullable = false,insertable = false,updatable = false)
     private Movie movie;
 
 
