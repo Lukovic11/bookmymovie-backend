@@ -13,6 +13,6 @@ public interface BookingRepository extends JpaRepository<Booking,Long> {
 
     void deleteByUser_Id(Long userId);
 
-    void deleteByMovie_Id(Long movieId);
+//    void deleteByMovie_Id(Long movieId);
 
 }

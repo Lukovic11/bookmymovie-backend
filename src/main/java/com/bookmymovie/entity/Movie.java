@@ -50,8 +50,8 @@ public class Movie {
     @Column(name = "trailer")
     private String trailer;
 
-    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
-    private List<Booking> bookings;
+//    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
+//    private List<Booking> bookings;
 
 
 

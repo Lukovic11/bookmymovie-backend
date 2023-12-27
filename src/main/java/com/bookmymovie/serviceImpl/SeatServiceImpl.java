@@ -1,5 +1,6 @@
 package com.bookmymovie.serviceImpl;
 
+import com.bookmymovie.entity.Seat;
 import com.bookmymovie.repository.SeatRepository;
 import com.bookmymovie.dto.SeatDTO;
 import com.bookmymovie.mapper.SeatMapper;
@@ -17,19 +18,6 @@ public class SeatServiceImpl implements SeatService {
     @Autowired
     private SeatMapper seatMapper;
 
-
-    @Override
-    public List<SeatDTO> findByScreeningId(Long screeningId) {
-        List<SeatDTO> seats=seatMapper.toSeatDTOs(seatRepository.findByScreening_Id(screeningId));
-        return seats;
-    }
-
-    @Override
-    public List<SeatDTO> findByReservedAndScreeningId(boolean reserved, Long screeningId) {
-        List<SeatDTO> seats=seatMapper.toSeatDTOs(seatRepository.findByReservedAndScreening_Id(reserved,screeningId));
-        return seats;
-    }
-
     @Override
     public List<SeatDTO> findByIdIn(List<Long> seatIds) {
         List<SeatDTO> seats=seatMapper.toSeatDTOs(seatRepository.findByIdIn(seatIds));
@@ -39,5 +27,10 @@ public class SeatServiceImpl implements SeatService {
     @Override
     public void updateSeatAvailability(List<Long> seatIds, boolean reserved) {
         seatRepository.updateSeatAvailability(seatIds,reserved);
+    }
+
+    @Override
+    public void save(Seat seat) {
+        seatRepository.save(seat);
     }
 }

@@ -1,12 +1,14 @@
 package com.bookmymovie.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "screening")
@@ -20,9 +22,6 @@ public class Screening {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "numofavailableseats")
-    private Long numOfAvailableSeats;
-
     @Column(name = "type")
     private String type;
 
@@ -32,14 +31,14 @@ public class Screening {
     @Column(name = "time")
     private LocalTime time;
 
-    @JsonIgnore
+    @JsonProperty("movie")
     @ManyToOne
-    @JoinColumn(name = "idmovie", foreignKey = @ForeignKey(name = "moviefk"),insertable = false,updatable = false)
+    @JoinColumn(name = "idmovie", foreignKey = @ForeignKey(name = "moviefk"))
     private Movie movie;
 
-    @JsonIgnore
+    @JsonProperty("movieHall")
     @ManyToOne
-    @JoinColumn(name="idmoviehall", foreignKey = @ForeignKey(name = "moviehallfk"),insertable = false,updatable = false)
+    @JoinColumn(name="idmoviehall", foreignKey = @ForeignKey(name = "moviehallfk"))
     private MovieHall movieHall;
 
 

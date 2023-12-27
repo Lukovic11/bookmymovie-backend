@@ -28,7 +28,7 @@ public class BookingController {
         return bookingService.findByUserId(userId);
     }
 
-    @PutMapping
+    @PostMapping
     @Transactional
     public void save(@RequestBody Booking booking) {
         bookingService.save(booking);
@@ -40,11 +40,6 @@ public class BookingController {
         bookingService.deleteById(id);
     }
 
-    @DeleteMapping("/byMovieId/{movieId}")
-    @Transactional
-    public void deleteByMovieId(@PathVariable Long movieId) {
-        bookingService.deleteByMovieId(movieId);
-    }
     @DeleteMapping("/byUserId/{userId}")
     @Transactional
     public void deleteByUser_Id(@PathVariable Long userId) {

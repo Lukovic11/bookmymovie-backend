@@ -15,7 +15,7 @@ public interface BookingService {
 
     void deleteById(Long id);
 
-    void deleteByMovieId(Long movieId);
+//    void deleteByMovieId(Long movieId);
 
     void deleteByUser_Id(Long userId);
 

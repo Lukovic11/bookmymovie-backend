@@ -20,5 +20,5 @@ public class BookingDTO {
     private Date createdOn;
     private ScreeningDTO screening;
     private UserDTO user;
-    private MovieDTO movie;
+//    private MovieDTO movie;
 }

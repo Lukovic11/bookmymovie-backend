@@ -12,5 +12,6 @@ public interface MovieHallMapper {
 
 
     MovieHallDTO movieHallToMovieHallDTO(MovieHall movieHall);
+    MovieHall movieHallDTOToMovieHall(MovieHallDTO movieHallDTO);
     List<MovieHallDTO> toMovieHallDTOs(List<MovieHall> movieHalls);
 }

@@ -103,7 +103,7 @@ public class MovieController {
         }
     }
 
-    @DeleteMapping("/deleteById/{id}")
+    @DeleteMapping("/byId/{id}")
     @Transactional
     public void deleteById(@PathVariable Long id) {
         movieService.deleteById(id);

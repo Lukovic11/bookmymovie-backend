@@ -8,15 +8,11 @@ import java.util.List;
 
 public interface SeatService {
 
-    List<SeatDTO> findByScreeningId(Long screeningId);
-
-    List<SeatDTO> findByReservedAndScreeningId(boolean reserved, Long screeningId);
-
     List<SeatDTO> findByIdIn(List<Long> seatIds);
 
     void updateSeatAvailability(List<Long> seatIds, boolean reserved);
 
-
+    void save(Seat seat);
 
 
 }
