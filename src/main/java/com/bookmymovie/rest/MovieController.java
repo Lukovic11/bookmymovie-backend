@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/movies")
+@Transactional
 public class MovieController {
 
     @Autowired
@@ -23,7 +24,6 @@ public class MovieController {
     private MovieMapper movieMapper;
 
     @GetMapping()
-    @Transactional
     public List<MovieDTO> findAll(){
         return movieService.findAll();
     }
@@ -34,24 +34,22 @@ public class MovieController {
     }
 
     @GetMapping("/byGenre/{genre}")
-    @Transactional
     public List<MovieDTO> findByGenre(@PathVariable String genre) {
         return movieService.findByGenre(genre);
     }
 
     @GetMapping("/byTitle/{title}")
-    @Transactional
     public MovieDTO findByTitle(@PathVariable String title) {
         return movieService.findByTitle(title);
     }
 
-    @Transactional
+    // No post mapping because it is not meant to handle HTTP request but only to save the object.
+    // Method for handling the HTTP request is handleFileUpload.
     public void save(@RequestBody Movie movie) {
         movieService.save(movie);
     }
 
     @PostMapping()
-    @Transactional
     public void handleFileUpload(                  @RequestParam("title") String title,
                                                    @RequestParam("description") String description,
                                                    @RequestParam("yearOfRelease") Long yearOfRelease,
@@ -104,7 +102,6 @@ public class MovieController {
     }
 
     @DeleteMapping("/byId/{id}")
-    @Transactional
     public void deleteById(@PathVariable Long id) {
         movieService.deleteById(id);
     }

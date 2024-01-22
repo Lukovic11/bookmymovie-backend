@@ -14,25 +14,23 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/movieHalls")
+@Transactional
 public class MovieHallController {
 
     @Autowired
     MovieHallService movieHallService;
 
     @GetMapping()
-    @Transactional
     public List<MovieHallDTO> findAll(){
         return movieHallService.findAll();
     }
 
     @PostMapping
-    @Transactional
     public void save(@RequestBody MovieHall movieHall) {
         movieHallService.save(movieHall);
     }
 
     @DeleteMapping("/byId/{id}")
-    @Transactional
     public void deleteById(@PathVariable Long id) {
         movieHallService.deleteById(id);
     }

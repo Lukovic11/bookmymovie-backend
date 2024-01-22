@@ -24,13 +24,14 @@ public class SeatServiceImpl implements SeatService {
         return seats;
     }
 
-    @Override
-    public void updateSeatAvailability(List<Long> seatIds, boolean reserved) {
-        seatRepository.updateSeatAvailability(seatIds,reserved);
-    }
 
     @Override
     public void save(Seat seat) {
         seatRepository.save(seat);
+    }
+
+    @Override
+    public void deleteByMovieHall_Id(Long movieHallId) {
+        seatRepository.deleteByMovieHall_Id(movieHallId);
     }
 }

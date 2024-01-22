@@ -10,9 +10,9 @@ public interface SeatService {
 
     List<SeatDTO> findByIdIn(List<Long> seatIds);
 
-    void updateSeatAvailability(List<Long> seatIds, boolean reserved);
-
     void save(Seat seat);
+
+    void deleteByMovieHall_Id(Long movieHallId);
 
 
 }

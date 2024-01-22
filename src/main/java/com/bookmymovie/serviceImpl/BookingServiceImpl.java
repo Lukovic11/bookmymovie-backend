@@ -40,10 +40,10 @@ public class BookingServiceImpl implements BookingService {
         bookingRepository.deleteById(id);
     }
 
-//    @Override
-//    public void deleteByMovieId(Long movieId) {
-//        bookingRepository.deleteByMovie_Id(movieId);
-//    }
+    @Override
+    public void deleteByScreening_Id(Long screeningId) {
+        bookingRepository.deleteByScreening_Id(screeningId);
+    }
 
     @Override
     public void deleteByUser_Id(Long userId) {

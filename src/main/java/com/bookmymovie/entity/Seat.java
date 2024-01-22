@@ -22,9 +22,6 @@ public class Seat {
     @Column(name = "seatrow")
     private Long seatRow;
 
-    @Column(name = "reserved")
-    private Boolean reserved;
-
     @ManyToOne
     @JoinColumn(name = "idmoviehall", foreignKey = @ForeignKey(name = "moviehallfk2"),nullable = false)
     private MovieHall movieHall;

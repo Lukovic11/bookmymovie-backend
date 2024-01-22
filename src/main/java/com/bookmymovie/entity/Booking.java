@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "booking")
@@ -30,6 +31,9 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "iduser", foreignKey = @ForeignKey(name = "userfk"),nullable = false)
     private User user;
+
+    @Transient
+    private List<Seat> seats;
 
 
 
