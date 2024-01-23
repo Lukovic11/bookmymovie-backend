@@ -6,11 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "booking_seat")
+@Table(name = "booked_seat")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class BookingSeat {
+public class BookedSeat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

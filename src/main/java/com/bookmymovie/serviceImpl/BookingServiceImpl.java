@@ -31,6 +31,12 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public List<BookingDTO> findByScreening_Id(Long screeningId) {
+        List<BookingDTO> bookings=bookingMapper.toBookingDTOs(bookingRepository.findByScreening_Id(screeningId));
+        return bookings;
+    }
+
+    @Override
     public void save(Booking booking) {
         bookingRepository.save(booking);
     }

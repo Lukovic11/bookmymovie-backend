@@ -11,6 +11,8 @@ public interface BookingService {
 
     List<BookingDTO> findByUserId(Long userId);
 
+    List<BookingDTO> findByScreening_Id(Long screeningId);
+
     void save(Booking booking);
 
     void deleteById(Long id);

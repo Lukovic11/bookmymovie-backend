@@ -3,6 +3,7 @@ package com.bookmymovie.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class Booking {
     private User user;
 
     @Transient
-    private List<Seat> seats;
+    private List<Long> seats=new ArrayList<>();
 
 
 

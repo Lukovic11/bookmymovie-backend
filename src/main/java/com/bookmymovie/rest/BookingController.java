@@ -1,10 +1,11 @@
 package com.bookmymovie.rest;
 
+import com.bookmymovie.dto.BookedSeatDTO;
 import com.bookmymovie.dto.BookingDTO;
+import com.bookmymovie.entity.BookedSeat;
 import com.bookmymovie.entity.Booking;
-import com.bookmymovie.entity.BookingSeat;
-import com.bookmymovie.entity.Seat;
-import com.bookmymovie.service.BookingSeatService;
+import com.bookmymovie.mapper.BookedSeatMapper;
+import com.bookmymovie.service.BookedSeatService;
 import com.bookmymovie.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,26 +21,49 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
     @Autowired
-    private BookingSeatService bookingSeatService;
+    private BookedSeatService bookedSeatService;
+    @Autowired
+    private BookedSeatMapper bookedSeatMapper;
 
     @GetMapping()
     public List<BookingDTO> findAll(){
-        return bookingService.findAll();
+        List<BookingDTO> bookings = bookingService.findAll();
+        setSeatsToBookings(bookings);
+        return bookings;
     }
 
     @GetMapping("/byUserId/{userId}")
     public List<BookingDTO> findByUserId(@PathVariable Long userId) {
-        return bookingService.findByUserId(userId);
+        List<BookingDTO> bookings = bookingService.findByUserId(userId);
+        setSeatsToBookings(bookings);
+        return bookings;
+    }
+
+    private void setSeatsToBookings(List<BookingDTO> bookings) {
+        for(BookingDTO b:bookings){
+            List<BookedSeatDTO> bookedSeats=bookedSeatMapper.toBookingSeatDTOs(bookedSeatService.findByBookingId(b.getId()));
+                for(BookedSeatDTO bs:bookedSeats){
+                    Long seat=bs.getSeatId();
+                    b.getSeats().add(seat);
+                }
+        }
+    }
+
+    @GetMapping("byScreeningId/{screeningId}")
+    public List<BookingDTO> findByScreening_Id(@PathVariable Long screeningId) {
+        List<BookingDTO> bookings = bookingService.findByScreening_Id(screeningId);
+        setSeatsToBookings(bookings);
+        return bookings;
     }
 
     @PostMapping
     public void save(@RequestBody Booking booking) {
         bookingService.save(booking);
-        for(Seat s:booking.getSeats()){
-            BookingSeat bookingSeat=new BookingSeat();
-            bookingSeat.setBookingId(booking.getId());
-            bookingSeat.setSeatId(s.getId());
-            bookingSeatService.save(bookingSeat);
+        for(Long s:booking.getSeats()){
+            BookedSeat bookedSeat =new BookedSeat();
+            bookedSeat.setBookingId(booking.getId());
+            bookedSeat.setSeatId(s);
+            bookedSeatService.save(bookedSeat);
         }
     }
 

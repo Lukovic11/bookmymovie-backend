@@ -1,14 +1,12 @@
 package com.bookmymovie.dto;
 
-import com.bookmymovie.entity.Movie;
-import com.bookmymovie.entity.Screening;
-import com.bookmymovie.entity.User;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,4 +18,5 @@ public class BookingDTO {
     private Date createdOn;
     private ScreeningDTO screening;
     private UserDTO user;
+    private List<Long> seats=new ArrayList<>();
 }
