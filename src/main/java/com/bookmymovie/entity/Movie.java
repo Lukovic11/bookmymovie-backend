@@ -50,9 +50,4 @@ public class Movie {
     @Column(name = "trailer")
     private String trailer;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "movie",cascade = CascadeType.ALL)
-    private List<Booking> bookings;
-
-
-
 }

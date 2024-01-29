@@ -22,8 +22,5 @@ public class MovieHall {
     @Column(name = "numofseats")
     private Long numOfSeats;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "movieHall")
-    private List<Seat> seats;
-
 
 }

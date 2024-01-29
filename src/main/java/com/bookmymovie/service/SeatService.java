@@ -1,5 +1,6 @@
 package com.bookmymovie.service;
 
+import com.bookmymovie.dto.SeatDTO;
 import com.bookmymovie.entity.Seat;
 import org.springframework.data.repository.query.Param;
 
@@ -7,15 +8,11 @@ import java.util.List;
 
 public interface SeatService {
 
-    List<Seat> findByScreeningId(Long screeningId);
+    List<SeatDTO> findByIdIn(List<Long> seatIds);
 
-    List<Seat> findByReservedAndScreeningId(boolean reserved, Long screeningId);
+    void save(Seat seat);
 
-    List<Seat> findByIdIn(List<Long> seatIds);
-
-    void updateSeatAvailability(List<Long> seatIds, boolean reserved);
-
-
+    void deleteByMovieHall_Id(Long movieHallId);
 
 
 }

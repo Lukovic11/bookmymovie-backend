@@ -32,7 +32,7 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     private List<Booking> bookings;
 
 

@@ -1,6 +1,6 @@
 package com.bookmymovie.serviceImpl;
 
-import com.bookmymovie.dao.MovieRepository;
+import com.bookmymovie.repository.MovieRepository;
 import com.bookmymovie.dto.MovieDTO;
 import com.bookmymovie.entity.Movie;
 import com.bookmymovie.mapper.MovieMapper;
@@ -9,37 +9,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 @Service
 public class MovieServiceImpl implements MovieService {
 
-    private MovieRepository movieRepository;
-
     @Autowired
-    private MovieServiceImpl(MovieRepository movieRepository){
-        this.movieRepository=movieRepository;
-    }
+    private MovieRepository movieRepository;
+    @Autowired
+    private MovieMapper movieMapper;
 
     @Override
     public List<MovieDTO> findAll() {
-        List<MovieDTO> movies = MovieMapper.INSTANCE.toMovieDTOs(movieRepository.findAll());
+        List<MovieDTO> movies = movieMapper.toMovieDTOs(movieRepository.findAll());
         return movies;
     }
 
     @Override
-    public Optional<Movie> findById(Long id) {
-        return movieRepository.findById(id);
+    public MovieDTO findById(Long id) {
+        Movie movie = movieRepository.findById(id).orElse(null);
+        if(movie!=null){
+            return movieMapper.movieToMovieDTO(movieRepository.findById(id).orElseThrow(() -> new NoSuchElementException()));
+
+        }
+        return null;
     }
 
     @Override
-    public List<Movie> findByGenre(String genre) {
-        return movieRepository.findByGenre(genre);
+    public List<MovieDTO> findByGenre(String genre) {
+        List<MovieDTO> movies = movieMapper.toMovieDTOs(movieRepository.findByGenre(genre));
+        return movies;
     }
 
     @Override
-    public List<Movie> findByTitle(String title) {
-        return movieRepository.findByTitle(title);
+    public MovieDTO findByTitle(String title) {
+        MovieDTO movie= movieMapper.movieToMovieDTO(movieRepository.findByTitle(title));
+        return movie;
     }
 
 

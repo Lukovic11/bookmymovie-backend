@@ -1,4 +1,4 @@
-package com.bookmymovie.dao;
+package com.bookmymovie.repository;
 
 import com.bookmymovie.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +11,7 @@ public interface MovieRepository extends JpaRepository<Movie,Long> {
 
     List<Movie> findByGenre(String genre);
 
-    List<Movie> findByTitle(String title);
+    Movie findByTitle(String title);
 
 
 

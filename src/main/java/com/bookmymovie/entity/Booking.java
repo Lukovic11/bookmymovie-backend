@@ -3,7 +3,9 @@ package com.bookmymovie.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "booking")
@@ -24,17 +26,17 @@ public class Booking {
     private Date createdOn;
 
     @ManyToOne
-    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "screeningfk2"),nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "idscreening", foreignKey = @ForeignKey(name = "screeningfk2"),nullable = false)
     private Screening screening;
 
-
     @ManyToOne
-    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "userfk"),insertable = false,updatable = false)
+    @JoinColumn(name = "iduser", foreignKey = @ForeignKey(name = "userfk"),nullable = false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "moviefk2"),nullable = false,insertable = false,updatable = false)
-    private Movie movie;
+    @Transient
+    private List<Long> seats=new ArrayList<>();
+
+
 
 
 

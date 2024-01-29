@@ -1,7 +1,8 @@
 package com.bookmymovie.rest;
 
-import com.bookmymovie.dao.MovieHallRepository;
-import com.bookmymovie.dao.MovieRepository;
+import com.bookmymovie.repository.MovieHallRepository;
+import com.bookmymovie.repository.MovieRepository;
+import com.bookmymovie.dto.ScreeningDTO;
 import com.bookmymovie.entity.Movie;
 import com.bookmymovie.entity.MovieHall;
 import com.bookmymovie.entity.Screening;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/screenings")
+@Transactional
 public class ScreeningController {
 
     @Autowired
@@ -25,31 +27,22 @@ public class ScreeningController {
     @Autowired
     private MovieHallRepository movieHallRepository;
 
-    @Autowired
-    public ScreeningController(ScreeningService screeningService) {
-        this.screeningService = screeningService;
-    }
-
     @GetMapping()
-    @Transactional
-    public List<Screening> findAll(){
+    public List<ScreeningDTO> findAll(){
         return screeningService.findAll();
     }
 
     @GetMapping("/byDate/{date}")
-    @Transactional
-    public List<Screening> findByDate(@PathVariable LocalDate date) {
+    public List<ScreeningDTO> findByDate(@PathVariable LocalDate date) {
         return screeningService.findByDate(date);
     }
 
     @GetMapping("/byMovieId/{movieId}")
-    @Transactional
-    public List<Screening> findByMovieId(@PathVariable Long movieId) {
+    public List<ScreeningDTO> findByMovieId(@PathVariable Long movieId) {
         return screeningService.findByMovieId(movieId);
     }
 
     @PostMapping
-    @Transactional
     public void save(@RequestBody Screening screening) {
         Movie movie=movieRepository.findById(screening.getMovie().getId())
                 .orElseThrow(()->new EntityNotFoundException("Movie not found with id:" + screening.getMovie().getId()));
@@ -61,25 +54,21 @@ public class ScreeningController {
     }
 
     @DeleteMapping("/byId/{id}")
-    @Transactional
     public void deleteById(@PathVariable Long id) {
         screeningService.deleteById(id);
     }
 
     @DeleteMapping("/byMovieId/{movieId}")
-    @Transactional
     public void deleteByMovieId(@PathVariable Long movieId) {
         screeningService.deleteByMovieId(movieId);
     }
 
     @DeleteMapping("/byMovieHallId/{movieHallId}")
-    @Transactional
     public void deleteByMovieHallId(@PathVariable Long movieHallId) {
         screeningService.deleteByMovieHallId(movieHallId);
     }
 
     @DeleteMapping("/byDate/{date}")
-    @Transactional
     public void deleteByDate(@PathVariable LocalDate date) {
         screeningService.deleteByDate(date);
     }

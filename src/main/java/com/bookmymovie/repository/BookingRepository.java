@@ -1,4 +1,4 @@
-package com.bookmymovie.dao;
+package com.bookmymovie.repository;
 
 import com.bookmymovie.entity.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,8 +11,12 @@ public interface BookingRepository extends JpaRepository<Booking,Long> {
 
     List<Booking> findByUserId(Long userId);
 
+    List<Booking> findByScreening_Id(Long screeningId);
+
+    void deleteByScreening_Id(Long screeningId);
+
     void deleteByUser_Id(Long userId);
 
-    void deleteByMovie_Id(Long movieId);
+
 
 }

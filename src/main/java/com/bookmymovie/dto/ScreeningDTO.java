@@ -19,10 +19,9 @@ import java.time.LocalTime;
 public class ScreeningDTO {
 
     private Long id;
-    private Long numOfAvailableSeats;
     private String type;
     private LocalDate date;
     private LocalTime time;
-    private Movie movie;
-    private MovieHall movieHall;
+    private MovieDTO movie;
+    private MovieHallDTO movieHall;
 }
