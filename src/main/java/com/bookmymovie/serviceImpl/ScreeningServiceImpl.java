@@ -6,9 +6,12 @@ import com.bookmymovie.entity.Screening;
 import com.bookmymovie.mapper.ScreeningMapper;
 import com.bookmymovie.service.ScreeningService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -62,4 +65,21 @@ public class ScreeningServiceImpl implements ScreeningService {
     public void deleteByDate(LocalDate date) {
         screeningRepository.deleteByDate(date);
     }
+
+    @Scheduled(cron = "0 0 * * * ?")
+    private void deleteFinishedScreenings(){
+        List<Screening> screenings=screeningRepository.findAll();
+        for(Screening s:screenings){
+            if(isScreeningOver(s.getDate(),s.getTime())){
+                deleteById(s.getId());
+            }
+        }
+    }
+
+    private boolean isScreeningOver(LocalDate date, LocalTime time){
+        LocalDateTime now= LocalDateTime.now();
+        LocalDateTime screening = date.atTime(time);
+        return now.isAfter(screening);
+    }
+
 }

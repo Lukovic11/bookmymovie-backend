@@ -3,7 +3,6 @@ package com.bookmymovie.rest;
 import com.bookmymovie.dto.MovieDTO;
 import com.bookmymovie.entity.Movie;
 import com.bookmymovie.mapper.MovieMapper;
-import com.bookmymovie.repository.MovieRepository;
 import com.bookmymovie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/movies")
