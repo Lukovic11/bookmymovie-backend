@@ -24,5 +24,6 @@ public class MovieDTO {
     private String genre;
     private byte[] poster;
     private String trailer;
+    private Boolean isPlaying;
 
 }

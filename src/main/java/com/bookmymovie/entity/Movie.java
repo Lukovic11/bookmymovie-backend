@@ -50,4 +50,7 @@ public class Movie {
     @Column(name = "trailer")
     private String trailer;
 
+    @Column(name = "isplaying")
+    private Boolean isPlaying;
+
 }
