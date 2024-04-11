@@ -22,7 +22,7 @@ public class MovieDTO {
     private String countryOfOrigin;
     private String director;
     private String genre;
-    private byte[] poster;
+    private String poster;
     private String trailer;
     private Boolean isPlaying;
 

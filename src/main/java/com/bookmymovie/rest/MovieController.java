@@ -7,7 +7,6 @@ import com.bookmymovie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class MovieController {
         return movieService.findAll();
     }
 
-    @GetMapping("/byId/{id}")
+    @GetMapping("/{id}")
     public MovieDTO findById(@PathVariable Long id) {
         return movieService.findById(id);
     }
@@ -56,17 +55,14 @@ public class MovieController {
                                                    @RequestParam("countryOfOrigin") String countryOfOrigin,
                                                    @RequestParam("director") String director,
                                                    @RequestParam("genre") String genre,
-                                                   @RequestParam("poster") MultipartFile file,
+                                                   @RequestParam("poster") String poster,
                                                    @RequestParam("trailer") String trailer) {
         try {
 
             MovieDTO existingMovie=movieService.findByTitle(title);
 
             if(existingMovie!=null){
-                if (!file.isEmpty()) {
-                    byte[] poster = file.getBytes();
-                    existingMovie.setPoster(poster);
-                }
+                existingMovie.setPoster(poster);
                 existingMovie.setDescription(description);
                 existingMovie.setYearOfRelease(yearOfRelease);
                 existingMovie.setDuration(duration);
@@ -79,10 +75,7 @@ public class MovieController {
                 save(movieMapper.movieDTOToMovie(existingMovie));
             }else{
                 Movie movie=new Movie();
-                if (!file.isEmpty()) {
-                    byte[] poster = file.getBytes();
-                    movie.setPoster(poster);
-                }
+               // existingMovie.setPoster(poster);
                 movie.setTitle(title);
                 movie.setDescription(description);
                 movie.setYearOfRelease(yearOfRelease);
@@ -96,6 +89,7 @@ public class MovieController {
                 save(movie);
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

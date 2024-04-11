@@ -3,7 +3,6 @@ package com.bookmymovie.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 
 
 @Entity
@@ -44,8 +43,7 @@ public class Movie {
     private String genre;
 
     @Column(name = "poster")
-    @Lob // the field should be mapped to a large object column type, like BLOB.
-    private byte[] poster;
+    private String poster;
 
     @Column(name = "trailer")
     private String trailer;
