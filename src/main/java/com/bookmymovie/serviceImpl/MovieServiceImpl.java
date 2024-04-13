@@ -26,6 +26,12 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public List<MovieDTO> findByIsPlayingTrue() {
+        List<MovieDTO> movies=movieMapper.toMovieDTOs(movieRepository.findByIsPlayingTrue());
+        return movies;
+    }
+
+    @Override
     public MovieDTO findById(Long id) {
         Movie movie = movieRepository.findById(id).orElse(null);
         if(movie!=null){

@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -32,9 +35,9 @@ public class ScreeningController {
         return screeningService.findAll();
     }
 
-    @GetMapping("/byDate/{date}")
-    public List<ScreeningDTO> findByDate(@PathVariable LocalDate date) {
-        return screeningService.findByDate(date);
+    @GetMapping("/{date}/{movieId}")
+    public List<ScreeningDTO> findByDateAndMovieId(@PathVariable LocalDate date, @PathVariable Long movieId) {
+        return screeningService.findByDateAndMovieId(date,movieId);
     }
 
     @GetMapping("/byMovieId/{movieId}")
@@ -72,4 +75,35 @@ public class ScreeningController {
     public void deleteByDate(@PathVariable LocalDate date) {
         screeningService.deleteByDate(date);
     }
+
+    @PostMapping("/makeScreenings")
+    public void generateScreeningsForNext3Months() {
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = startDate.plusMonths(3);
+        List<Movie> movies = movieRepository.findByIsPlayingTrue();
+        List<MovieHall> movieHalls = movieHallRepository.findAll();
+
+        LocalTime[] timeSlots = {LocalTime.of(15, 0), LocalTime.of(18, 0), LocalTime.of(21, 0)};
+        int timeSlotIndex = 0;
+
+        for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
+            for (Movie movie : movies) {
+                if (!screeningService.existsByMovieAndDate(movie, date)) {
+                    MovieHall movieHall = movieHalls.get((int) (Math.random() * movieHalls.size()));
+                    for (LocalTime time : timeSlots) {
+                        Screening screening = new Screening();
+                        screening.setMovie(movie);
+                        screening.setMovieHall(movieHall);
+                        screening.setDate(date);
+                        screening.setTime(time);
+                        screeningService.save(screening);
+                    }
+                }
+            }
+        }
+    }
 }
+
+
+
+

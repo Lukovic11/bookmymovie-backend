@@ -12,7 +12,7 @@ public interface BookingMapper {
 
 
     BookingDTO bookingToBookingDTO(Booking booking);
-//    Booking bookingDTOToBooking(BookingDTO bookingDTO);
+
     List<BookingDTO> toBookingDTOs(List<Booking> bookings);
 
 }

@@ -19,7 +19,6 @@ import java.time.LocalTime;
 public class ScreeningDTO {
 
     private Long id;
-    private String type;
     private LocalDate date;
     private LocalTime time;
     private MovieDTO movie;

@@ -22,9 +22,6 @@ public class Screening {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "type")
-    private String type;
-
     @Column(name = "date")
     private LocalDate date;
 

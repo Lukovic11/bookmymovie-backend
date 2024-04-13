@@ -1,5 +1,7 @@
 package com.bookmymovie.serviceImpl;
 
+import com.bookmymovie.entity.Movie;
+import com.bookmymovie.entity.MovieHall;
 import com.bookmymovie.repository.ScreeningRepository;
 import com.bookmymovie.dto.ScreeningDTO;
 import com.bookmymovie.entity.Screening;
@@ -30,8 +32,8 @@ public class ScreeningServiceImpl implements ScreeningService {
     }
 
     @Override
-    public List<ScreeningDTO> findByDate(LocalDate date) {
-        List<ScreeningDTO> screenings=screeningMapper.toScreeningDTOs(screeningRepository.findByDate(date));
+    public List<ScreeningDTO> findByDateAndMovieId(LocalDate date,Long movieId) {
+        List<ScreeningDTO> screenings=screeningMapper.toScreeningDTOs(screeningRepository.findByDateAndMovie_Id(date,movieId));
         return screenings;
     }
 
@@ -65,6 +67,17 @@ public class ScreeningServiceImpl implements ScreeningService {
     public void deleteByDate(LocalDate date) {
         screeningRepository.deleteByDate(date);
     }
+
+    @Override
+    public boolean existsByMovieHallAndDateAndTime(MovieHall movieHall, LocalDate date, LocalTime time) {
+        return screeningRepository.existsByMovieHallAndDateAndTime(movieHall, date, time);
+    }
+
+    @Override
+    public boolean existsByMovieAndDate(Movie movie, LocalDate date) {
+        return screeningRepository.existsByMovieAndDate(movie, date);
+    }
+
 
     @Scheduled(cron = "0 0 * * * ?")
     private void deleteFinishedScreenings(){
