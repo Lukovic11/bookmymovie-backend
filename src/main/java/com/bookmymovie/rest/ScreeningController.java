@@ -35,9 +35,9 @@ public class ScreeningController {
         return screeningService.findAll();
     }
 
-    @GetMapping("/{date}/{movieId}")
-    public List<ScreeningDTO> findByDateAndMovieId(@PathVariable LocalDate date, @PathVariable Long movieId) {
-        return screeningService.findByDateAndMovieId(date,movieId);
+    @GetMapping("/{date}/{time}/{movieId}")
+    ScreeningDTO findByDateAndTime(@PathVariable LocalDate date, @PathVariable LocalTime time, @PathVariable Long movieId) {
+        return screeningService.findByDateAndTimeAndMovie_Id(date,time,movieId);
     }
 
     @GetMapping("/byMovieId/{movieId}")

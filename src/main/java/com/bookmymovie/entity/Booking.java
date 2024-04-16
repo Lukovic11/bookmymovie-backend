@@ -33,8 +33,8 @@ public class Booking {
     @JoinColumn(name = "iduser", foreignKey = @ForeignKey(name = "userfk"),nullable = false)
     private User user;
 
-    @Transient
-    private List<Long> seats=new ArrayList<>();
+//    @Transient
+//    private List<Long> seats=new ArrayList<>();
 
 
 

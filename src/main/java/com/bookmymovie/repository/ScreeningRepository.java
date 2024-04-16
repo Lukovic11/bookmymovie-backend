@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface ScreeningRepository extends JpaRepository<Screening,Long> {
 
-    List<Screening> findByDateAndMovie_Id(LocalDate date,Long movieId);
+    Screening findByDateAndTimeAndMovie_Id(LocalDate date,LocalTime time, Long movieId);
 
 //    @Query("SELECT s FROM Screening s JOIN FETCH s.movie WHERE  s.movie.id=:movieId")
     List<Screening> findByMovie_Id(Long movieId);

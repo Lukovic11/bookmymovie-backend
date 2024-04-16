@@ -13,9 +13,9 @@ public interface ScreeningService {
 
     List<ScreeningDTO> findAll();
 
-    List<ScreeningDTO> findByDateAndMovieId(LocalDate date,Long movieId);
-
     List<ScreeningDTO> findByMovieId(Long movieId);
+
+    ScreeningDTO findByDateAndTimeAndMovie_Id(LocalDate date,LocalTime time, Long movieId);
 
     void save(Screening screening);
 
@@ -27,7 +27,6 @@ public interface ScreeningService {
 
     void deleteByDate(LocalDate date);
 
-    boolean existsByMovieHallAndDateAndTime(MovieHall movieHall, LocalDate date, LocalTime time);
 
     boolean existsByMovieAndDate(Movie movie, LocalDate date);
 }

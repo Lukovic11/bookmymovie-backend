@@ -32,15 +32,14 @@ public class ScreeningServiceImpl implements ScreeningService {
     }
 
     @Override
-    public List<ScreeningDTO> findByDateAndMovieId(LocalDate date,Long movieId) {
-        List<ScreeningDTO> screenings=screeningMapper.toScreeningDTOs(screeningRepository.findByDateAndMovie_Id(date,movieId));
+    public List<ScreeningDTO> findByMovieId(Long movieId) {
+        List<ScreeningDTO> screenings=screeningMapper.toScreeningDTOs(screeningRepository.findByMovie_Id(movieId));
         return screenings;
     }
 
     @Override
-    public List<ScreeningDTO> findByMovieId(Long movieId) {
-        List<ScreeningDTO> screenings=screeningMapper.toScreeningDTOs(screeningRepository.findByMovie_Id(movieId));
-        return screenings;
+    public ScreeningDTO findByDateAndTimeAndMovie_Id(LocalDate date, LocalTime time, Long movieId) {
+        return screeningMapper.screeningToScreeningDTO(screeningRepository.findByDateAndTimeAndMovie_Id(date, time, movieId));
     }
 
     @Override
@@ -66,11 +65,6 @@ public class ScreeningServiceImpl implements ScreeningService {
     @Override
     public void deleteByDate(LocalDate date) {
         screeningRepository.deleteByDate(date);
-    }
-
-    @Override
-    public boolean existsByMovieHallAndDateAndTime(MovieHall movieHall, LocalDate date, LocalTime time) {
-        return screeningRepository.existsByMovieHallAndDateAndTime(movieHall, date, time);
     }
 
     @Override
