@@ -1,4 +1,4 @@
-package com.bookmymovie.service;
+package com.bookmymovie.serviceImpl;
 
 import com.bookmymovie.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
