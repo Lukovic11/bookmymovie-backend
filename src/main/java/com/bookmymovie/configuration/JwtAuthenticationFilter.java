@@ -1,6 +1,6 @@
 package com.bookmymovie.configuration;
 
-import com.bookmymovie.service.JwtService;
+import com.bookmymovie.serviceImpl.JwtService;
 import com.bookmymovie.serviceImpl.UserDetailsServiceImp;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

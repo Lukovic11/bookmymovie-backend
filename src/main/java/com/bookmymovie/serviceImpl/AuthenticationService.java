@@ -1,16 +1,13 @@
-package com.bookmymovie.service;
+package com.bookmymovie.serviceImpl;
 
 import com.bookmymovie.entity.AuthenticationResponse;
 import com.bookmymovie.entity.User;
 import com.bookmymovie.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

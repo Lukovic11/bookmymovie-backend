@@ -1,8 +1,7 @@
-package com.bookmymovie.service;
+package com.bookmymovie.serviceImpl;
 
 import com.bookmymovie.entity.User;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
