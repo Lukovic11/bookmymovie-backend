@@ -93,7 +93,7 @@ public class MovieController {
         }
     }
 
-    @DeleteMapping("/byId/{id}")
+    @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         movieService.deleteById(id);
     }

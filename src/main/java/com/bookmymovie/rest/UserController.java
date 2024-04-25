@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -28,12 +27,17 @@ public class UserController {
         return userService.findById(id);
     }
 
+    @GetMapping("/byEmail")
+    public UserDTO findByEmail() {
+        return userService.findByEmail();
+    }
+
     @PostMapping
     public void save(@RequestBody User user) {
         userService.save(user);
     }
 
-    @DeleteMapping("/deleteById/{id}")
+    @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         userService.deleteById(id);
     }

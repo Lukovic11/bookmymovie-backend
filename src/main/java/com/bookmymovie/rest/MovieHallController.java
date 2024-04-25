@@ -30,7 +30,7 @@ public class MovieHallController {
         movieHallService.save(movieHall);
     }
 
-    @DeleteMapping("/byId/{id}")
+    @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         movieHallService.deleteById(id);
     }

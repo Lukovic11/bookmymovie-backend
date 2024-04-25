@@ -15,14 +15,14 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private final String SECRET_KEY="3ffa9d8f4bd98b965cfd0a375557a2ad94e4476cd276291e613a1d43656d85e6";
+    private final String SECRET_KEY = "3ffa9d8f4bd98b965cfd0a375557a2ad94e4476cd276291e613a1d43656d85e6";
 
-    public String extractUsername(String token){
-        return  extractClaim(token,Claims::getSubject);
+    public String extractUsername(String token) {
+        return extractClaim(token, Claims::getSubject);
     }
 
-    public boolean isValid(String token, UserDetails user){
-        String username=extractUsername(token);
+    public boolean isValid(String token, UserDetails user) {
+        String username = extractUsername(token);
         return (username.equals(user.getUsername()) && !isTokenExpired(token));
     }
 
@@ -31,16 +31,16 @@ public class JwtService {
     }
 
     private Date extractExpiration(String token) {
-        return extractClaim(token,Claims::getExpiration);
+        return extractClaim(token, Claims::getExpiration);
     }
 
-    public <T> T extractClaim(String token, Function<Claims,T> resolver){
-        Claims claims=extractAllClaims(token);
+    public <T> T extractClaim(String token, Function<Claims, T> resolver) {
+        Claims claims = extractAllClaims(token);
         return resolver.apply(claims);
     }
 
 
-    private Claims extractAllClaims(String token){
+    private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder().
                 setSigningKey(getSigninKey())
@@ -49,19 +49,19 @@ public class JwtService {
                 .getBody();
     }
 
-    public String generateToken(User user){
+    public String generateToken(User user) {
         return Jwts
                 .builder()
                 .setSubject(user.getEmail())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+24*60*60*1000))
+                .setExpiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
                 .signWith(getSigninKey())
                 .compact();
 
     }
 
     private SecretKey getSigninKey() {
-        byte[] keyBytes= Decoders.BASE64URL.decode(SECRET_KEY);
+        byte[] keyBytes = Decoders.BASE64URL.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 

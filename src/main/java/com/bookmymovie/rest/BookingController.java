@@ -25,19 +25,19 @@ public class BookingController {
     @Autowired
     private BookedSeatMapper bookedSeatMapper;
 
-//    @GetMapping()
-//    public List<BookingDTO> findAll(){
-//        List<BookingDTO> bookings = bookingService.findAll();
+    @GetMapping()
+    public List<BookingDTO> findAll(){
+        List<BookingDTO> bookings = bookingService.findAll();
 //        setSeatsToBookings(bookings);
-//        return bookings;
-//    }
+        return bookings;
+    }
 
-//    @GetMapping("/byUserId/{userId}")
-//    public List<BookingDTO> findByUserId(@PathVariable Long userId) {
-//        List<BookingDTO> bookings = bookingService.findByUserId(userId);
+    @GetMapping("/byUserId/{userId}")
+    public List<BookingDTO> findByUserId(@PathVariable Long userId) {
+        List<BookingDTO> bookings = bookingService.findByUserId(userId);
 //        setSeatsToBookings(bookings);
-//        return bookings;
-//    }
+        return bookings;
+    }
 
 //    private void setSeatsToBookings(List<BookingDTO> bookings) {
 //        for(BookingDTO b:bookings){
@@ -49,14 +49,14 @@ public class BookingController {
 //        }
 //    }
 
-//    @GetMapping("byScreeningId/{screeningId}")
-//    public List<BookingDTO> findByScreening_Id(@PathVariable Long screeningId) {
-//        List<BookingDTO> bookings = bookingService.findByScreening_Id(screeningId);
+    @GetMapping("byScreeningId/{screeningId}")
+    public List<BookingDTO> findByScreening_Id(@PathVariable Long screeningId) {
+        List<BookingDTO> bookings = bookingService.findByScreening_Id(screeningId);
 //        setSeatsToBookings(bookings);
-//        return bookings;
-//    }
+        return bookings;
+    }
 
-    @PostMapping
+    @PostMapping()
     public void save(@RequestBody Booking booking) {
         bookingService.save(booking);
 //        for(Long s:booking.getSeats()){
