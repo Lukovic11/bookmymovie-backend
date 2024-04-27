@@ -30,8 +30,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         req->req.requestMatchers("/", "api/movies/**", "api/movies/{id}", "api/coming-soon/{id}",
-                                        "api/login", "api/signup", "/api/bookings","/api/bookings/byUserId/**",
-                                        "/api/bookings/byUserId/**","/api/screenings/{date}/{time}/{movieId}","/api/users/byEmail")
+                                        "api/login", "api/signup", "/api/bookings/**","/api/bookings/byUserId/**",
+                                        "/api/bookings/byUserId/**","/api/screenings/**","/api/users/byEmail")
                                 .permitAll()
                                 .requestMatchers("/api/movieHalls/**").hasAuthority("admin")
                                 .anyRequest()
