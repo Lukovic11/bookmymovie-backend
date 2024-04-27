@@ -27,9 +27,9 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @GetMapping("/byEmail")
-    public UserDTO findByEmail() {
-        return userService.findByEmail();
+    @GetMapping("/byEmail/{email}")
+    public UserDTO findByEmail(@PathVariable String email) {
+        return userService.findByEmail(email);
     }
 
     @PostMapping

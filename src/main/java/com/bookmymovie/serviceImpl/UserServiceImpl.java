@@ -42,9 +42,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO findByEmail() {
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
-        User user=userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow();
-        return userMapper.userToUserDTO(user);
+    public UserDTO findByEmail(String email) {
+//        User user=userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow();
+//        return userMapper.userToUserDTO(user);
+        return userMapper.userToUserDTO(userRepository.findByEmail(email).orElseThrow());
+
     }
 }
