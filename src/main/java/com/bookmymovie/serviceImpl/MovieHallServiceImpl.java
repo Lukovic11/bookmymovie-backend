@@ -20,8 +20,7 @@ public class MovieHallServiceImpl implements MovieHallService {
 
     @Override
     public List<MovieHallDTO> findAll() {
-        List<MovieHallDTO> movieHalls= movieHallMapper.toMovieHallDTOs(movieHallRepository.findAll());
-        return movieHalls;
+        return movieHallMapper.toMovieHallDTOs(movieHallRepository.findAll());
     }
 
     @Override

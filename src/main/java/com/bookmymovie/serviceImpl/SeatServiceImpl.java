@@ -19,11 +19,9 @@ public class SeatServiceImpl implements SeatService {
     private SeatMapper seatMapper;
 
     @Override
-    public List<SeatDTO> findByIdIn(List<Long> seatIds) {
-        List<SeatDTO> seats=seatMapper.toSeatDTOs(seatRepository.findByIdIn(seatIds));
-        return seats;
+    public List<SeatDTO> findByMovieHallId(Long id) {
+        return seatMapper.toSeatDTOs(seatRepository.findByMovieHall_Id(id));
     }
-
 
     @Override
     public void save(Seat seat) {

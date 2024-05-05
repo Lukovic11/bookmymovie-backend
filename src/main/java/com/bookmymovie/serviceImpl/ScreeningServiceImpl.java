@@ -1,7 +1,6 @@
 package com.bookmymovie.serviceImpl;
 
 import com.bookmymovie.entity.Movie;
-import com.bookmymovie.entity.MovieHall;
 import com.bookmymovie.repository.ScreeningRepository;
 import com.bookmymovie.dto.ScreeningDTO;
 import com.bookmymovie.entity.Screening;
@@ -27,14 +26,12 @@ public class ScreeningServiceImpl implements ScreeningService {
 
     @Override
     public List<ScreeningDTO> findAll() {
-        List<ScreeningDTO> screenings=screeningMapper.toScreeningDTOs(screeningRepository.findAll());
-        return screenings;
+        return screeningMapper.toScreeningDTOs(screeningRepository.findAll());
     }
 
     @Override
     public List<ScreeningDTO> findByMovieId(Long movieId) {
-        List<ScreeningDTO> screenings=screeningMapper.toScreeningDTOs(screeningRepository.findByMovie_Id(movieId));
-        return screenings;
+        return screeningMapper.toScreeningDTOs(screeningRepository.findByMovie_Id(movieId));
     }
 
     @Override

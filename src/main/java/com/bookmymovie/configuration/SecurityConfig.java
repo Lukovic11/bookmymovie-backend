@@ -31,7 +31,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         req->req.requestMatchers("/", "api/movies/**", "api/movies/{id}", "api/coming-soon/{id}",
                                         "api/login", "api/signup", "/api/bookings/**","/api/bookings/byUserId/**",
-                                        "/api/bookings/byUserId/**","/api/screenings/**","/api/users/byEmail")
+                                        "/api/bookings/byUserId/**","/api/screenings/**","/api/users/byEmail",
+                                        "/api/seats/byMovieHall/**","api/seats/createSeats","api/bookedSeats/byScrAndSeat/**",
+                                        "/api/bookings/byScreeningId/**","api/bookedSeats/byBookingId/**")
                                 .permitAll()
                                 .requestMatchers("/api/movieHalls/**").hasAuthority("admin")
                                 .anyRequest()

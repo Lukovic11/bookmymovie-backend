@@ -9,8 +9,7 @@ import java.util.List;
 @Mapper(componentModel="spring")
 public interface MovieHallMapper {
 
+    MovieHall movieHallDTOToMovieHall(MovieHallDTO movieHallDTO);
 
-    MovieHallDTO movieHallToMovieHallDTO(MovieHall movieHall);
-//    MovieHall movieHallDTOToMovieHall(MovieHallDTO movieHallDTO);
     List<MovieHallDTO> toMovieHallDTOs(List<MovieHall> movieHalls);
 }

@@ -75,7 +75,7 @@ public class MovieController {
                 save(movieMapper.movieDTOToMovie(existingMovie));
             }else{
                 Movie movie=new Movie();
-               // existingMovie.setPoster(poster);
+                // existingMovie.setPoster(poster);
                 movie.setTitle(title);
                 movie.setDescription(description);
                 movie.setYearOfRelease(yearOfRelease);

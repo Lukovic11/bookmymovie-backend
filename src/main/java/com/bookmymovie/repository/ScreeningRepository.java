@@ -15,7 +15,6 @@ public interface ScreeningRepository extends JpaRepository<Screening,Long> {
 
     Screening findByDateAndTimeAndMovie_Id(LocalDate date,LocalTime time, Long movieId);
 
-//    @Query("SELECT s FROM Screening s JOIN FETCH s.movie WHERE  s.movie.id=:movieId")
     List<Screening> findByMovie_Id(Long movieId);
 
     void deleteByMovie_Id(Long movieId);
@@ -23,8 +22,6 @@ public interface ScreeningRepository extends JpaRepository<Screening,Long> {
     void deleteByMovieHall_Id(Long movieHallId);
 
     void deleteByDate(LocalDate date);
-
-    boolean existsByMovieHallAndDateAndTime(MovieHall movieHall, LocalDate date, LocalTime time);
 
     boolean existsByMovieAndDate(Movie movie, LocalDate date);
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface SeatService {
 
-    List<SeatDTO> findByIdIn(List<Long> seatIds);
+    List<SeatDTO> findByMovieHallId(Long id);
 
     void save(Seat seat);
 

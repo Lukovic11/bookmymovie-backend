@@ -2,7 +2,6 @@ package com.bookmymovie.service;
 
 import com.bookmymovie.dto.ScreeningDTO;
 import com.bookmymovie.entity.Movie;
-import com.bookmymovie.entity.MovieHall;
 import com.bookmymovie.entity.Screening;
 
 import java.time.LocalDate;

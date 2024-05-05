@@ -20,20 +20,17 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<BookingDTO> findAll() {
-        List<BookingDTO> bookings=bookingMapper.toBookingDTOs(bookingRepository.findAll());
-        return bookings;
+        return bookingMapper.toBookingDTOs(bookingRepository.findAll());
     }
 
     @Override
     public List<BookingDTO> findByUserId(Long userId) {
-        List<BookingDTO> bookings=bookingMapper.toBookingDTOs(bookingRepository.findByUserId(userId));
-        return bookings;
+        return bookingMapper.toBookingDTOs(bookingRepository.findByUserId(userId));
     }
 
     @Override
     public List<BookingDTO> findByScreening_Id(Long screeningId) {
-        List<BookingDTO> bookings=bookingMapper.toBookingDTOs(bookingRepository.findByScreening_Id(screeningId));
-        return bookings;
+        return bookingMapper.toBookingDTOs(bookingRepository.findByScreening_Id(screeningId));
     }
 
     @Override

@@ -12,6 +12,5 @@ public interface SeatMapper {
 
 
     SeatDTO seatToSeatDTO(Seat seat);
-//    Seat seatDTOToSeat(SeatDTO seatDTO);
     List<SeatDTO> toSeatDTOs(List<Seat> seats);
 }

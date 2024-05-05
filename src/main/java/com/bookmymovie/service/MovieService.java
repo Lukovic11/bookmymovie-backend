@@ -9,8 +9,6 @@ public interface MovieService {
 
     List<MovieDTO> findAll();
 
-    List<MovieDTO> findByIsPlayingTrue();
-
     MovieDTO findById(Long id);
 
     List<MovieDTO> findByGenre(String genre);

@@ -21,21 +21,14 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<MovieDTO> findAll() {
-        List<MovieDTO> movies = movieMapper.toMovieDTOs(movieRepository.findAll());
-        return movies;
-    }
-
-    @Override
-    public List<MovieDTO> findByIsPlayingTrue() {
-        List<MovieDTO> movies=movieMapper.toMovieDTOs(movieRepository.findByIsPlayingTrue());
-        return movies;
+        return movieMapper.toMovieDTOs(movieRepository.findAll());
     }
 
     @Override
     public MovieDTO findById(Long id) {
         Movie movie = movieRepository.findById(id).orElse(null);
         if(movie!=null){
-            return movieMapper.movieToMovieDTO(movieRepository.findById(id).orElseThrow(() -> new NoSuchElementException()));
+            return movieMapper.movieToMovieDTO(movieRepository.findById(id).orElseThrow(NoSuchElementException::new));
 
         }
         return null;
@@ -43,20 +36,17 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<MovieDTO> findByGenre(String genre) {
-        List<MovieDTO> movies = movieMapper.toMovieDTOs(movieRepository.findByGenre(genre));
-        return movies;
+        return movieMapper.toMovieDTOs(movieRepository.findByGenre(genre));
     }
 
     @Override
     public MovieDTO findByTitle(String title) {
-        MovieDTO movie= movieMapper.movieToMovieDTO(movieRepository.findByTitle(title));
-        return movie;
+        return movieMapper.movieToMovieDTO(movieRepository.findByTitle(title));
     }
 
 
     @Override
     public void save(Movie movie) {
-        //    save method is used for both saving and updating based on weather the entity has a defined id
         movieRepository.save(movie);
     }
 
@@ -64,8 +54,4 @@ public class MovieServiceImpl implements MovieService {
     public void deleteById(Long id) {
         movieRepository.deleteById(id);
     }
-
-
-
-
 }

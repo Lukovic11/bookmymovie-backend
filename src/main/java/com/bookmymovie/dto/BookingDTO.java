@@ -18,5 +18,5 @@ public class BookingDTO {
     private Date createdOn;
     private ScreeningDTO screening;
     private UserDTO user;
-//    private List<Long> seats=new ArrayList<>();
+    private List<Long> seats=new ArrayList<>();
 }

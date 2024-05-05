@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/bookedSeats")
@@ -27,10 +28,10 @@ public class BookedSeatController {
         return bookedSeatService.findBySeatId(seatId);
     }
 
+
     @PostMapping
     public void save(BookedSeat bookedSeat) {
         bookedSeatService.save(bookedSeat);
     }
-
 
 }

@@ -1,12 +1,15 @@
 package com.bookmymovie.serviceImpl;
 
 import com.bookmymovie.entity.BookedSeat;
+import com.bookmymovie.entity.Screening;
+import com.bookmymovie.entity.Seat;
 import com.bookmymovie.repository.BookedSeatRepository;
 import com.bookmymovie.service.BookedSeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookedSeatServiceImpl implements BookedSeatService {
@@ -28,6 +31,5 @@ public class BookedSeatServiceImpl implements BookedSeatService {
     public void save(BookedSeat bookedSeat) {
         bookedSeatRepository.save(bookedSeat);
     }
-
 
 }
