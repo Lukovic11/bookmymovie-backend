@@ -29,6 +29,7 @@ public class UserController {
 
     @GetMapping("/byEmail/{email}")
     public UserDTO findByEmail(@PathVariable String email) {
+        System.out.println(userService.findByEmail(email));
         return userService.findByEmail(email);
     }
 
