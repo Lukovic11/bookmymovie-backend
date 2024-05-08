@@ -33,9 +33,10 @@ public class SecurityConfig {
                                         "api/login", "api/signup", "/api/bookings/**","/api/bookings/byUserId/**",
                                         "/api/bookings/byUserId/**","/api/screenings/**","/api/users/byEmail",
                                         "/api/seats/byMovieHall/**","api/seats/createSeats","api/bookedSeats/byScrAndSeat/**",
-                                        "/api/bookings/byScreeningId/**","api/bookedSeats/byBookingId/**")
+                                        "/api/bookings/byScreeningId/**","api/bookedSeats/byBookingId/**","/api/users/**",
+                                        "/api/users/put")
                                 .permitAll()
-                                .requestMatchers("/api/movieHalls/**").hasAuthority("admin")
+                                .requestMatchers("/api/movieHalls/**","/api/users").hasAuthority("admin")
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userService)

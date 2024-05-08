@@ -29,13 +29,17 @@ public class UserController {
 
     @GetMapping("/byEmail/{email}")
     public UserDTO findByEmail(@PathVariable String email) {
-        System.out.println(userService.findByEmail(email));
         return userService.findByEmail(email);
     }
 
     @PostMapping
     public void save(@RequestBody User user) {
         userService.save(user);
+    }
+
+    @PutMapping("/put")
+    public void update(@RequestBody User user) {
+        userService.update(user);
     }
 
     @DeleteMapping("/{id}")
