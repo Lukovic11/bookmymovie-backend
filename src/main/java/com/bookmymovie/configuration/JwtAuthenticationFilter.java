@@ -1,7 +1,7 @@
 package com.bookmymovie.configuration;
 
 import com.bookmymovie.serviceImpl.JwtService;
-import com.bookmymovie.serviceImpl.UserDetailsServiceImp;
+import com.bookmymovie.serviceImpl.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
     private final JwtService jwtService;
-    private final UserDetailsServiceImp userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(

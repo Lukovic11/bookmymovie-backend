@@ -3,8 +3,6 @@ package com.bookmymovie.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-
-
 @Entity
 @Table(name="movie")
 @NoArgsConstructor

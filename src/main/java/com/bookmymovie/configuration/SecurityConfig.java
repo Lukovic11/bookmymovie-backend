@@ -1,6 +1,6 @@
 package com.bookmymovie.configuration;
 
-import com.bookmymovie.serviceImpl.UserDetailsServiceImp;
+import com.bookmymovie.serviceImpl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final UserDetailsServiceImp userService;
+    private final UserDetailsServiceImpl userService;
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
@@ -36,7 +36,7 @@ public class SecurityConfig {
                                         "/api/bookings/byScreeningId/**","api/bookedSeats/byBookingId/**","/api/users/**",
                                         "/api/users/put")
                                 .permitAll()
-                                .requestMatchers("/api/movieHalls/**","/api/users").hasAuthority("admin")
+                                .requestMatchers("/api/movieHalls/**","/api/users","api/movies").hasAuthority("admin")
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userService)
@@ -55,7 +55,4 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
-
-
-
 }

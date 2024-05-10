@@ -81,7 +81,7 @@ public class ScreeningController {
         List<Movie> movies = movieRepository.findByIsPlayingTrue();
         List<MovieHall> movieHalls = movieHallRepository.findAll();
 
-        LocalTime[] timeSlots = {LocalTime.of(15, 0), LocalTime.of(18, 0), LocalTime.of(21, 0)};
+        LocalTime[] timeSlots = {LocalTime.of(13, 0), LocalTime.of(17, 0), LocalTime.of(21, 0)};
         int timeSlotIndex = 0;
 
         for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
