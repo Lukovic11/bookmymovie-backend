@@ -36,7 +36,8 @@ public class SecurityConfig {
                                         "/api/bookings/byScreeningId/**","api/bookedSeats/byBookingId/**","/api/users/**",
                                         "/api/users/put")
                                 .permitAll()
-                                .requestMatchers("/api/movieHalls/**","/api/users","api/movies").hasAuthority("admin")
+                                .requestMatchers("/api/movieHalls/**","/api/users","api/movies",
+                                        "/api/movies/update").hasAuthority("admin")
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userService)

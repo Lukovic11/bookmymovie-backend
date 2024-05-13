@@ -1,6 +1,9 @@
 package com.bookmymovie.serviceImpl;
 
 import com.bookmymovie.entity.Movie;
+import com.bookmymovie.entity.MovieHall;
+import com.bookmymovie.repository.MovieHallRepository;
+import com.bookmymovie.repository.MovieRepository;
 import com.bookmymovie.repository.ScreeningRepository;
 import com.bookmymovie.dto.ScreeningDTO;
 import com.bookmymovie.entity.Screening;
@@ -22,6 +25,10 @@ public class ScreeningServiceImpl implements ScreeningService {
     private ScreeningRepository screeningRepository;
     @Autowired
     private ScreeningMapper screeningMapper;
+    @Autowired
+    private MovieRepository movieRepository;
+    @Autowired
+    private MovieHallRepository movieHallRepository;
 
 
     @Override
@@ -45,6 +52,11 @@ public class ScreeningServiceImpl implements ScreeningService {
     }
 
     @Override
+    public void deleteAllInBatch() {
+        screeningRepository.deleteAllInBatch();
+    }
+
+    @Override
     public void deleteById(Long id) {
         screeningRepository.deleteById(id);
     }
@@ -62,6 +74,33 @@ public class ScreeningServiceImpl implements ScreeningService {
     @Override
     public void deleteByDate(LocalDate date) {
         screeningRepository.deleteByDate(date);
+    }
+
+    @Override
+    public void generateScreeningsForNext3Months() {
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = startDate.plusMonths(3);
+        List<Movie> movies = movieRepository.findByIsPlayingTrue();
+        List<MovieHall> movieHalls = movieHallRepository.findAll();
+
+        LocalTime[] timeSlots = {LocalTime.of(13, 0), LocalTime.of(17, 0), LocalTime.of(21, 0)};
+        int timeSlotIndex = 0;
+
+        for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
+            for (Movie movie : movies) {
+                if (!existsByMovieAndDate(movie, date)) {
+                    MovieHall movieHall = movieHalls.get((int) (Math.random() * movieHalls.size()));
+                    for (LocalTime time : timeSlots) {
+                        Screening screening = new Screening();
+                        screening.setMovie(movie);
+                        screening.setMovieHall(movieHall);
+                        screening.setDate(date);
+                        screening.setTime(time);
+                        save(screening);
+                    }
+                }
+            }
+        }
     }
 
     @Override

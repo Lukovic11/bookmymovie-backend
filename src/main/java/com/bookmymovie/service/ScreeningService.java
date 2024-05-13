@@ -18,6 +18,8 @@ public interface ScreeningService {
 
     void save(Screening screening);
 
+    void deleteAllInBatch();
+
     void deleteById(Long id);
 
     void deleteByMovieId(Long movieId);
@@ -26,6 +28,7 @@ public interface ScreeningService {
 
     void deleteByDate(LocalDate date);
 
+    void generateScreeningsForNext3Months();
 
     boolean existsByMovieAndDate(Movie movie, LocalDate date);
 }

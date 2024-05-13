@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
+
 public class MovieServiceImpl implements MovieService {
 
     @Autowired
@@ -48,6 +49,18 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void save(Movie movie) {
         movieRepository.save(movie);
+    }
+
+    @Override
+    public void update(List<Movie> movies) {
+        for(Movie movie:movies){
+            Movie old=movieRepository.findById(movie.getId()).orElseThrow();
+            movie.setDescription(old.getDescription());
+            movie.setYearOfRelease(old.getYearOfRelease());
+            movie.setDuration(old.getDuration());
+            movie.setTrailer(old.getTrailer());
+            movieRepository.save(movie);
+        }
     }
 
     @Override

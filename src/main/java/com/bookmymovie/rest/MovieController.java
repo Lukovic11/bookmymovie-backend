@@ -4,6 +4,7 @@ import com.bookmymovie.dto.MovieDTO;
 import com.bookmymovie.entity.Movie;
 import com.bookmymovie.mapper.MovieMapper;
 import com.bookmymovie.service.MovieService;
+import com.bookmymovie.service.ScreeningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,8 @@ public class MovieController {
     private MovieService movieService;
     @Autowired
     private MovieMapper movieMapper;
+    @Autowired
+    private ScreeningService screeningService;
 
     @GetMapping()
     public List<MovieDTO> findAll(){
@@ -44,6 +47,13 @@ public class MovieController {
     public void save(@RequestBody Movie movie) {
         System.out.println(movie);
         movieService.save(movie);
+    }
+
+    @PutMapping("/update")
+    public void update(@RequestBody List<Movie> movies){
+        screeningService.deleteAllInBatch();
+        movieService.update(movies);
+        screeningService.generateScreeningsForNext3Months();
     }
 
     @DeleteMapping("/{id}")
