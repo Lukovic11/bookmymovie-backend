@@ -24,6 +24,12 @@ public class SeatController {
     MovieHallService movieHallService;
     @Autowired
     MovieHallMapper movieHallMapper;
+
+    @GetMapping("/{id}")
+    public SeatDTO findById(@PathVariable Long id) {
+        return seatService.findById(id);
+    }
+
     @GetMapping("/byMovieHall/{id}")
     public List<SeatDTO> findByMovieHallId(@PathVariable Long id) {
         return seatService.findByMovieHallId(id);

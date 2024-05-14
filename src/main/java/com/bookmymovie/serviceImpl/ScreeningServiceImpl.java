@@ -2,6 +2,8 @@ package com.bookmymovie.serviceImpl;
 
 import com.bookmymovie.entity.Movie;
 import com.bookmymovie.entity.MovieHall;
+import com.bookmymovie.exceptions.BadRequestException;
+import com.bookmymovie.exceptions.NotFoundException;
 import com.bookmymovie.repository.MovieHallRepository;
 import com.bookmymovie.repository.MovieRepository;
 import com.bookmymovie.repository.ScreeningRepository;
@@ -38,12 +40,30 @@ public class ScreeningServiceImpl implements ScreeningService {
 
     @Override
     public List<ScreeningDTO> findByMovieId(Long movieId) {
-        return screeningMapper.toScreeningDTOs(screeningRepository.findByMovie_Id(movieId));
+        if(movieId==null){
+            throw new BadRequestException("Movie id cannot be null.");
+        }
+        movieRepository.findById(movieId)
+                .orElseThrow(()->new NotFoundException("Movie with the id of "+movieId+" not found."));
+        return screeningMapper.toScreeningDTOs(screeningRepository.findByMovie_Id(movieId)
+                .orElseThrow(()->new NotFoundException("Screenings not found")));
     }
 
     @Override
     public ScreeningDTO findByDateAndTimeAndMovie_Id(LocalDate date, LocalTime time, Long movieId) {
-        return screeningMapper.screeningToScreeningDTO(screeningRepository.findByDateAndTimeAndMovie_Id(date, time, movieId));
+        if(movieId==null){
+            throw new BadRequestException("Movie id cannot be null.");
+        }
+        if(date==null){
+            throw new BadRequestException("Date cannot be null.");
+        }
+        if(time==null){
+            throw new BadRequestException("Time id cannot be null.");
+        }
+        movieRepository.findById(movieId)
+                .orElseThrow(()->new NotFoundException("Movie with the id of "+movieId+" not found."));
+        return screeningMapper.screeningToScreeningDTO(screeningRepository.findByDateAndTimeAndMovie_Id(date, time, movieId).
+                orElseThrow(()->new NotFoundException("Screening not found.")));
     }
 
     @Override
@@ -58,21 +78,40 @@ public class ScreeningServiceImpl implements ScreeningService {
 
     @Override
     public void deleteById(Long id) {
+        if(id==null){
+            throw new BadRequestException("Screening id cannot be null.");
+        }
+        screeningRepository.findById(id).orElseThrow(()->new NotFoundException("Screening with the id of "+id+" not found"));
         screeningRepository.deleteById(id);
     }
 
     @Override
     public void deleteByMovieId(Long movieId) {
+        if(movieId==null){
+            throw new BadRequestException("Movie id cannot be null.");
+        }
+        movieRepository.findById(movieId)
+                .orElseThrow(()->new NotFoundException("Movie with the id of "+movieId+" not found."));
+        screeningRepository.findByMovie_Id(movieId)
+                .orElseThrow(()->new NotFoundException("Screening not found"));
         screeningRepository.deleteByMovie_Id(movieId);
     }
 
     @Override
     public void deleteByMovieHallId(Long movieHallId) {
+        if(movieHallId==null){
+            throw new BadRequestException("Movie Hall id cannot be null.");
+        }
+        movieRepository.findById(movieHallId)
+                .orElseThrow(()->new NotFoundException("Movie Hall with the id of "+movieHallId+" not found"));
         screeningRepository.deleteByMovieHall_Id(movieHallId);
     }
 
     @Override
     public void deleteByDate(LocalDate date) {
+        if(date==null){
+            throw new BadRequestException("Date cannot be null.");
+        }
         screeningRepository.deleteByDate(date);
     }
 
@@ -80,7 +119,8 @@ public class ScreeningServiceImpl implements ScreeningService {
     public void generateScreeningsForNext3Months() {
         LocalDate startDate = LocalDate.now();
         LocalDate endDate = startDate.plusMonths(3);
-        List<Movie> movies = movieRepository.findByIsPlayingTrue();
+        List<Movie> movies = movieRepository.findByIsPlayingTrue()
+                .orElseThrow(()->new NotFoundException("There are no movies currently playing."));
         List<MovieHall> movieHalls = movieHallRepository.findAll();
 
         LocalTime[] timeSlots = {LocalTime.of(13, 0), LocalTime.of(17, 0), LocalTime.of(21, 0)};
@@ -105,6 +145,9 @@ public class ScreeningServiceImpl implements ScreeningService {
 
     @Override
     public boolean existsByMovieAndDate(Movie movie, LocalDate date) {
+        if(movie==null || date==null){
+            throw new BadRequestException("Data cannot be null.");
+        }
         return screeningRepository.existsByMovieAndDate(movie, date);
     }
 
@@ -120,6 +163,9 @@ public class ScreeningServiceImpl implements ScreeningService {
     }
 
     private boolean isScreeningOver(LocalDate date, LocalTime time){
+        if(date==null || time==null){
+            throw new BadRequestException("Data cannot be null.");
+        }
         LocalDateTime now= LocalDateTime.now();
         LocalDateTime screening = date.atTime(time);
         return now.isAfter(screening);

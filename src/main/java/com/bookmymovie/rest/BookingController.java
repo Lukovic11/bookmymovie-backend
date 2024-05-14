@@ -4,9 +4,12 @@ import com.bookmymovie.dto.BookedSeatDTO;
 import com.bookmymovie.dto.BookingDTO;
 import com.bookmymovie.entity.BookedSeat;
 import com.bookmymovie.entity.Booking;
+import com.bookmymovie.entity.BookingRequestData;
+import com.bookmymovie.entity.EmailData;
 import com.bookmymovie.mapper.BookedSeatMapper;
 import com.bookmymovie.service.BookedSeatService;
 import com.bookmymovie.service.BookingService;
+import com.bookmymovie.serviceImpl.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +27,8 @@ public class BookingController {
     private BookedSeatService bookedSeatService;
     @Autowired
     private BookedSeatMapper bookedSeatMapper;
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @GetMapping()
     public List<BookingDTO> findAll(){
@@ -48,14 +53,15 @@ public class BookingController {
     }
 
     @PostMapping()
-    public void save(@RequestBody Booking booking) {
-        bookingService.save(booking);
-        for(Long s:booking.getSeats()){
+    public void save(@RequestBody BookingRequestData bookingRequestData) {
+        bookingService.save(bookingRequestData.getBooking());
+        for(Long s:bookingRequestData.getBooking().getSeats()){
             BookedSeat bookedSeat =new BookedSeat();
-            bookedSeat.setBookingId(booking.getId());
+            bookedSeat.setBookingId(bookingRequestData.getBooking().getId());
             bookedSeat.setSeatId(s);
             bookedSeatService.save(bookedSeat);
         }
+            emailSenderService.sendEmail(bookingRequestData.getEmailData());
     }
 
     @DeleteMapping("/byId/{id}")

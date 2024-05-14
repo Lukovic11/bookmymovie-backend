@@ -17,5 +17,7 @@ public interface UserService {
 
     void deleteById(Long id);
 
+    boolean doesUserExist(String email);
+
     UserDTO findByEmail(String email);
 }

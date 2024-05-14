@@ -1,5 +1,7 @@
 package com.bookmymovie.serviceImpl;
 
+import com.bookmymovie.exceptions.BadRequestException;
+import com.bookmymovie.exceptions.NotFoundException;
 import com.bookmymovie.repository.MovieHallRepository;
 import com.bookmymovie.dto.MovieHallDTO;
 import com.bookmymovie.entity.MovieHall;
@@ -30,6 +32,10 @@ public class MovieHallServiceImpl implements MovieHallService {
 
     @Override
     public void deleteById(Long id) {
+        if(id==null){
+            throw new BadRequestException("Movie Hall id cannot be null.");
+        }
+        movieHallRepository.findById(id).orElseThrow(()-> new NotFoundException("Movie Hall not found."));
         movieHallRepository.deleteById(id);
     }
 

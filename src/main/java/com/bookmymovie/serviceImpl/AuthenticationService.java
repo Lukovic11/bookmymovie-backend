@@ -2,7 +2,11 @@ package com.bookmymovie.serviceImpl;
 
 import com.bookmymovie.entity.AuthenticationResponse;
 import com.bookmymovie.entity.User;
+import com.bookmymovie.exceptions.BadRequestException;
+import com.bookmymovie.exceptions.NotFoundException;
+import com.bookmymovie.exceptions.ValidationException;
 import com.bookmymovie.repository.UserRepository;
+import com.bookmymovie.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,8 +21,23 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private UserService userService;
 
     public AuthenticationResponse register(User request){
+        if(userService.doesUserExist(request.getEmail())){
+            throw new ValidationException("User with "+request.getEmail()+" email already exists");
+        }
+
+        if(request.getPassword().length()<8){
+            throw new ValidationException("Password must be at least 8 characters long.");
+        }
+        if(request.getFirstname()==null || request.getLastname()==null ||
+        request.getEmail()==null){
+            throw new ValidationException("User data cannot be empty.");
+        }
+        if(request.getRole()!=null){
+            throw new BadRequestException("User already logged in.");
+        }
         User user=new User();
         user.setFirstname(request.getFirstname());
         user.setLastname(request.getLastname());
@@ -33,6 +52,15 @@ public class AuthenticationService {
         return new AuthenticationResponse(token);
     }
     public AuthenticationResponse authenticate(User request){
+        if(!(userService.doesUserExist(request.getEmail()))){
+            throw new NotFoundException("User with email "+request.getEmail()+" not found");
+        }
+        if(request.getEmail()==null || request.getPassword()==null){
+            throw new ValidationException("User data cannot be empty.");
+        }
+        if(request.getRole()!=null){
+            throw new BadRequestException("User already logged in.");
+        }
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),

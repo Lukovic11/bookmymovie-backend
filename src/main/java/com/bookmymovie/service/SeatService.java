@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface SeatService {
 
+    SeatDTO findById(Long id);
+
     List<SeatDTO> findByMovieHallId(Long id);
 
     void save(Seat seat);

@@ -45,7 +45,6 @@ public class MovieController {
 
     @PostMapping()
     public void save(@RequestBody Movie movie) {
-        System.out.println(movie);
         movieService.save(movie);
     }
 

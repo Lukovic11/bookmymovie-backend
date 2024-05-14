@@ -4,6 +4,8 @@ import com.bookmymovie.serviceImpl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import java.security.GeneralSecurityException;
+import java.util.Properties;
 
 @Configuration
 @EnableWebSecurity
@@ -34,10 +39,10 @@ public class SecurityConfig {
                                         "/api/bookings/byUserId/**","/api/screenings/**","/api/users/byEmail",
                                         "/api/seats/byMovieHall/**","api/seats/createSeats","api/bookedSeats/byScrAndSeat/**",
                                         "/api/bookings/byScreeningId/**","api/bookedSeats/byBookingId/**","/api/users/**",
-                                        "/api/users/put")
+                                        "/api/users/put","api/email","/api/seats/**")
                                 .permitAll()
                                 .requestMatchers("/api/movieHalls/**","/api/users","api/movies",
-                                        "/api/movies/update").hasAuthority("admin")
+                                        "/api/movies/update","/api/movies/**").hasAuthority("admin")
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userService)

@@ -1,5 +1,7 @@
 package com.bookmymovie.serviceImpl;
 
+import com.bookmymovie.exceptions.BadRequestException;
+import com.bookmymovie.exceptions.NotFoundException;
 import com.bookmymovie.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,8 +19,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
+        if(username==null){
+            throw new BadRequestException("Username cannot be null.");
+        }
         return repository.findByEmail(username)
-                .orElseThrow(()->new UsernameNotFoundException("User not found"));
+                .orElseThrow(()->new NotFoundException("User with the username of "+username+" not found."));
     }
 }

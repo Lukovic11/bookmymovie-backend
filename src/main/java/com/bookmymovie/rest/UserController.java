@@ -32,6 +32,11 @@ public class UserController {
         return userService.findByEmail(email);
     }
 
+    @GetMapping("/doesUserExist/{email}")
+    public boolean doesUserExist(@PathVariable String email) {
+        return userService.doesUserExist(email);
+    }
+
     @PostMapping
     public void save(@RequestBody User user) {
         userService.save(user);
