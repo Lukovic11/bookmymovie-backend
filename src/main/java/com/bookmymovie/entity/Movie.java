@@ -26,7 +26,7 @@ public class Movie {
     private Long yearOfRelease;
 
     @Column(name = "duration")
-    private Long duration;
+        private Long duration;
 
     @Column(name = "language")
     private String language;

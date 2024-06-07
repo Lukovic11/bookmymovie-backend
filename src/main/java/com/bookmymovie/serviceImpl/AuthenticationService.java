@@ -35,9 +35,9 @@ public class AuthenticationService {
         request.getEmail()==null){
             throw new ValidationException("User data cannot be empty.");
         }
-        if(request.getRole()!=null){
-            throw new BadRequestException("User already logged in.");
-        }
+//        if(request.getRole()!=null){
+//            throw new BadRequestException("User already logged in.");
+//        }
         User user=new User();
         user.setFirstname(request.getFirstname());
         user.setLastname(request.getLastname());
@@ -58,9 +58,9 @@ public class AuthenticationService {
         if(request.getEmail()==null || request.getPassword()==null){
             throw new ValidationException("User data cannot be empty.");
         }
-        if(request.getRole()!=null){
-            throw new BadRequestException("User already logged in.");
-        }
+//        if(request.getRole()!=null){
+//            throw new BadRequestException("User already logged in.");
+//        }
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
