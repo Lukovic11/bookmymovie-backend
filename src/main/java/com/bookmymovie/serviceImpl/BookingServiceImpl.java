@@ -1,11 +1,13 @@
 package com.bookmymovie.serviceImpl;
 
+import com.bookmymovie.entity.Movie;
 import com.bookmymovie.exceptions.BadRequestException;
 import com.bookmymovie.exceptions.NotFoundException;
 import com.bookmymovie.repository.BookingRepository;
 import com.bookmymovie.dto.BookingDTO;
 import com.bookmymovie.entity.Booking;
 import com.bookmymovie.mapper.BookingMapper;
+import com.bookmymovie.repository.MovieRepository;
 import com.bookmymovie.repository.ScreeningRepository;
 import com.bookmymovie.repository.UserRepository;
 import com.bookmymovie.service.BookingService;
@@ -25,6 +27,8 @@ public class BookingServiceImpl implements BookingService {
     private UserRepository userRepository;
     @Autowired
     private ScreeningRepository screeningRepository;
+    @Autowired
+    private MovieRepository movieRepository;
 
     @Override
     public List<BookingDTO> findAll() {
