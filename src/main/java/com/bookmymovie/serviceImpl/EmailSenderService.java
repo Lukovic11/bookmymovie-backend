@@ -1,6 +1,6 @@
 package com.bookmymovie.serviceImpl;
 
-import com.bookmymovie.entity.EmailData;
+import com.bookmymovie.dto.EmailData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

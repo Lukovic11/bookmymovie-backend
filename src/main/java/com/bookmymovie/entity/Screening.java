@@ -1,14 +1,11 @@
 package com.bookmymovie.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 
 @Entity
 @Table(name = "screening")
@@ -37,6 +34,4 @@ public class Screening {
     @ManyToOne
     @JoinColumn(name="idmoviehall", foreignKey = @ForeignKey(name = "moviehallfk"))
     private MovieHall movieHall;
-
-
 }

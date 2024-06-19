@@ -1,8 +1,7 @@
 package com.bookmymovie.serviceImpl;
 
-import com.bookmymovie.entity.AuthenticationResponse;
+import com.bookmymovie.dto.AuthenticationResponse;
 import com.bookmymovie.entity.User;
-import com.bookmymovie.exceptions.BadRequestException;
 import com.bookmymovie.exceptions.NotFoundException;
 import com.bookmymovie.exceptions.ValidationException;
 import com.bookmymovie.repository.UserRepository;

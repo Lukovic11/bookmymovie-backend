@@ -25,6 +25,4 @@ public class Seat {
     @ManyToOne
     @JoinColumn(name = "idmoviehall", foreignKey = @ForeignKey(name = "moviehallfk2"),nullable = false)
     private MovieHall movieHall;
-
-
 }

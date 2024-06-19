@@ -21,6 +21,4 @@ public class MovieHall {
 
     @Column(name = "numofseats")
     private Long numOfSeats;
-
-
 }

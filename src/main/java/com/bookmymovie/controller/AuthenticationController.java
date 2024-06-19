@@ -1,6 +1,6 @@
 package com.bookmymovie.controller;
 
-import com.bookmymovie.entity.AuthenticationResponse;
+import com.bookmymovie.dto.AuthenticationResponse;
 import com.bookmymovie.entity.User;
 import com.bookmymovie.serviceImpl.AuthenticationService;
 import lombok.RequiredArgsConstructor;

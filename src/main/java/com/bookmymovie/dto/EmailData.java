@@ -1,4 +1,4 @@
-package com.bookmymovie.entity;
+package com.bookmymovie.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

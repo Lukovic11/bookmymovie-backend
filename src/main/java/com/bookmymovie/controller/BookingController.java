@@ -3,7 +3,7 @@ package com.bookmymovie.controller;
 import com.bookmymovie.dto.BookedSeatDTO;
 import com.bookmymovie.dto.BookingDTO;
 import com.bookmymovie.entity.BookedSeat;
-import com.bookmymovie.entity.BookingRequestData;
+import com.bookmymovie.dto.BookingRequestData;
 import com.bookmymovie.mapper.BookedSeatMapper;
 import com.bookmymovie.service.BookedSeatService;
 import com.bookmymovie.service.BookingService;

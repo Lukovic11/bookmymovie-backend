@@ -10,9 +10,8 @@ import lombok.*;
 @Data
 public class Movie {
 
-    @Id //defining a primary key
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // defining how we generate primary key value (identity=auto increment)
     @Column(name = "id")
     private Long id;
 
@@ -48,5 +47,4 @@ public class Movie {
 
     @Column(name = "isplaying")
     private Boolean isPlaying;
-
 }

@@ -1,5 +1,6 @@
-package com.bookmymovie.entity;
+package com.bookmymovie.dto;
 
+import com.bookmymovie.entity.Booking;
 import lombok.Data;
 
 @Data

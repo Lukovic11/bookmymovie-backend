@@ -35,9 +35,4 @@ public class Booking {
 
     @Transient
     private List<Long> seats=new ArrayList<>();
-
-
-
-
-
 }
