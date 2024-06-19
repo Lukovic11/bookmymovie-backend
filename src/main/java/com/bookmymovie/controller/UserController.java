@@ -1,4 +1,4 @@
-package com.bookmymovie.rest;
+package com.bookmymovie.controller;
 
 import com.bookmymovie.dto.UserDTO;
 import com.bookmymovie.entity.User;

@@ -1,4 +1,4 @@
-package com.bookmymovie.rest;
+package com.bookmymovie.controller;
 
 
 import com.bookmymovie.entity.BookedSeat;
@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/bookedSeats")
